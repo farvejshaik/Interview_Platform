@@ -1,10 +1,10 @@
-# Interview Platform - Backend
+# TalentForge - Backend
 
-A robust Node.js/Express backend for an interview platform that handles user authentication, real-time chat, video calls, and background job processing.
+A robust Node.js/Express backend for TalentForge that handles user authentication, real-time chat, video calls, and background job processing.
 
 ## Overview
 
-This backend serves as the API layer for the Interview Platform, providing endpoints for:
+This backend serves as the API layer for TalentForge, providing endpoints for:
 
 - User management and authentication (via Clerk)
 - Real-time chat and video communication (via Stream)
@@ -28,13 +28,16 @@ backend/
 ├── src/
 │   ├── server.js                 # Express app initialization
 │   ├── controllers/
-│   │   └── chatController.js     # Chat-related handlers
+│   │   ├── chatController.js     # Chat-related handlers
+│   │   └── sessionController.js  # Session-related handlers
 │   ├── routes/
-│   │   └── chatRoutes.js         # Chat route definitions
+│   │   ├── chatRoutes.js         # Chat route definitions
+│   │   └── sessionRoutes.js      # Session route definitions
 │   ├── middleware/
 │   │   └── protectRoute.js       # Authentication & authorization
 │   ├── models/
-│   │   └── User.js               # User data model
+│   │   ├── User.js               # User data model
+│   │   └── Session.js            # Session data model
 │   └── lib/
 │       ├── db.js                 # MongoDB connection
 │       ├── env.js                # Environment variables
@@ -143,6 +146,45 @@ The server will be accessible at `http://localhost:3000` (or your configured POR
   - Webhook endpoint for Clerk events
   - Handles automatic user sync and deletion
 
+### Sessions
+
+- **POST** `/api/sessions`
+  - Protected endpoint (requires authentication)
+  - Creates a new session, registers a Stream Video call, and initializes a Stream Chat channel
+  - Request Body:
+    ```json
+    {
+      "problem": "Two Sum",
+      "difficulty": "easy"
+    }
+    ```
+  - Response: `201 Created` with session details
+
+- **GET** `/api/sessions/active`
+  - Protected endpoint (requires authentication)
+  - Retrieves a list of active sessions (limit 20), sorted by creation date (newest first)
+  - Response: `200 OK` with list of sessions
+
+- **GET** `/api/sessions/my-recent`
+  - Protected endpoint (requires authentication)
+  - Retrieves the user's completed sessions (limit 20), sorted by creation date (newest first)
+  - Response: `200 OK` with list of sessions
+
+- **GET** `/api/sessions/:id`
+  - Protected endpoint (requires authentication)
+  - Retrieves detailed information of a specific session by ID
+  - Response: `200 OK` with session details
+
+- **POST** `/api/sessions/:id/join`
+  - Protected endpoint (requires authentication)
+  - Joins an active session as a participant and adds the user to the corresponding Stream Chat channel
+  - Response: `200 OK` with updated session details
+
+- **POST** `/api/sessions/:id/end`
+  - Protected endpoint (requires authentication)
+  - Ends the session (deletes Stream Video call, deletes Stream Chat channel, sets DB status to `completed`)
+  - Response: `200 OK` with ended session details
+
 ## Features
 
 ### User Management
@@ -168,6 +210,12 @@ The server will be accessible at `http://localhost:3000` (or your configured POR
 - **Inngest Functions**:
   - `sync-user`: Creates user in MongoDB when signed up via Clerk
   - `delete-user-from-db`: Removes user from MongoDB and Stream when deleted from Clerk
+
+### Session Orchestration
+
+- **Stream Integration**: Automatically creates/deletes Stream Video calls and Stream Chat channels upon starting/ending sessions
+- **Participant Access Control**: Validates session state, limits capacity to one participant, and adds joining members to the active Stream Chat channel
+- **Lifecycle Management**: Safely transitions session states from `active` to `completed` in the database while tearing down real-time communication channels
 
 ### Production Features
 
@@ -203,6 +251,21 @@ Runs the server normally.
   email: String,                 // Unique email address
   profileImage: String,          // URL to profile image
   clerkId: String,               // Unique Clerk user ID
+  createdAt: Date,               // Timestamp
+  updatedAt: Date                // Timestamp
+}
+```
+
+### Session
+
+```javascript
+{
+  problem: String,               // Interview problem title
+  difficulty: String,            // Difficulty: "easy", "medium", "hard"
+  host: Schema.Types.ObjectId,   // Reference to Host User
+  participant: Schema.Types.ObjectId, // Reference to Participant User (null if empty)
+  status: String,                // Session status: "active" | "completed"
+  callId: String,                // Unique identifier for Stream Call & Chat
   createdAt: Date,               // Timestamp
   updatedAt: Date                // Timestamp
 }
@@ -263,6 +326,30 @@ Inngest function that syncs new Clerk users to MongoDB and Stream.
 ### `deleteUserFromDB()` (inngest.js)
 
 Inngest function that removes users from MongoDB and Stream when deleted from Clerk.
+
+### `createSession()` (sessionController.js)
+
+Creates a new session in MongoDB, provisions a Stream Video call, and instantiates a Stream Chat channel.
+
+### `getActiveSessions()` (sessionController.js)
+
+Retrieves active sessions populated with host and participant user information.
+
+### `getMyRecentSessions()` (sessionController.js)
+
+Retrieves completed sessions involving the authenticated user as host or participant.
+
+### `getSessionById()` (sessionController.js)
+
+Retrieves details for a specific session by its database ID.
+
+### `joinSession()` (sessionController.js)
+
+Enrolls the current user as a session participant and joins the corresponding Stream Chat channel.
+
+### `endSession()` (sessionController.js)
+
+Concludes a session, hard-deletes the associated Stream Video call/Chat channel, and marks status as completed in the database.
 
 ## Deployment
 
