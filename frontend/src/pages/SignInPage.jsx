@@ -23,6 +23,7 @@ export default function SignInPage() {
           routing="path" 
           path="/sign-in" 
           signUpUrl="/sign-up"
+          afterSignInUrl="/problems"
           appearance={{
             elements: {
               card: "shadow-2xl border border-base-content/10 rounded-2xl bg-base-100/90 backdrop-blur-md",
