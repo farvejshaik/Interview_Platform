@@ -4,7 +4,6 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Menu, X, SparklesIcon } from "lucide-react";
 import { Link } from "react-router";
-import { SignInButton } from "@clerk/clerk-react";
 
 const Navbar1 = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -42,11 +41,12 @@ const Navbar1 = () => {
             transition={{ duration: 0.3, delay: 0.2 }}
             whileHover={{ scale: 1.05 }}
           >
-            <SignInButton mode="modal">
-              <button className="inline-flex items-center justify-center rounded-full bg-primary px-5 py-2 text-sm font-medium text-primary-content transition-colors hover:bg-primary/90">
-                Get Started
-              </button>
-            </SignInButton>
+            <Link
+              to="/sign-in"
+              className="inline-flex items-center justify-center rounded-full bg-primary px-5 py-2 text-sm font-medium text-primary-content transition-colors hover:bg-primary/90"
+            >
+              Get Started
+            </Link>
           </motion.div>
 
           <motion.button
@@ -87,14 +87,13 @@ const Navbar1 = () => {
                 transition={{ delay: 0.3 }}
                 exit={{ opacity: 0, y: 20 }}
               >
-                <SignInButton mode="modal">
-                  <button
-                    className="inline-flex w-full items-center justify-center rounded-full bg-primary px-5 py-3 text-base font-medium text-primary-content transition-colors hover:bg-primary/90"
-                    onClick={toggleMenu}
-                  >
-                    Get Started
-                  </button>
-                </SignInButton>
+                <Link
+                  to="/sign-in"
+                  className="inline-flex w-full items-center justify-center rounded-full bg-primary px-5 py-3 text-base font-medium text-primary-content transition-colors hover:bg-primary/90"
+                  onClick={toggleMenu}
+                >
+                  Get Started
+                </Link>
               </motion.div>
             </div>
           </motion.div>

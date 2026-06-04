@@ -4,13 +4,12 @@ import {
   SparklesIcon,
   ZapIcon,
 } from "lucide-react";
-import { useUser, SignInButton } from "@clerk/clerk-react";
+import { useUser } from "@clerk/clerk-react";
 import { Navbar1 } from "../components/ui/navbar-1";
 import HeroSection from "../components/ui/hero-section";
 import { BentoGrid } from "../components/ui/bento-grid";
 import { TestimonialsSection } from "../components/ui/testimonials";
 import { Footer } from "../components/ui/footer";
-import { Button } from "../components/ui/button";
 
 function TwitterIcon({ className }) {
   return (
@@ -56,22 +55,14 @@ function HomePage() {
       ]
     : [
         {
-          element: (
-            <SignInButton mode="modal">
-              <Button variant="default" size="lg">
-                Start Interview
-              </Button>
-            </SignInButton>
-          ),
+          text: "Start Interview",
+          to: "/sign-in",
+          variant: "default",
         },
         {
-          element: (
-            <SignInButton mode="modal">
-              <Button variant="outline" size="lg">
-                Get Started
-              </Button>
-            </SignInButton>
-          ),
+          text: "Get Started",
+          to: "/sign-in",
+          variant: "outline",
         },
       ];
 
