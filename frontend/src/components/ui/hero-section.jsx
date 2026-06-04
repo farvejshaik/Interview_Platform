@@ -48,14 +48,7 @@ const floatingVariants = {
   },
 };
 
-const HeroSection = ({
-  title,
-  subtitle,
-  actions,
-  stats,
-  image,
-  className,
-}) => {
+const HeroSection = ({ title, subtitle, actions, stats, image, className }) => {
   return (
     <section className={cn("section-y w-full overflow-hidden", className)}>
       <div className="page-container grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
@@ -111,7 +104,7 @@ const HeroSection = ({
           >
             {stats.map((stat, index) => (
               <div key={index} className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-base-100 border border-base-content/10">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full border border-base-content/3 bg-base-100/70">
                   {stat.icon}
                 </div>
                 <div>
@@ -145,14 +138,11 @@ const HeroSection = ({
             style={{ transitionDelay: "0.5s" }}
           />
 
-          <motion.div
-            className="relative w-full"
-            variants={imageVariants}
-          >
+          <motion.div className="relative w-full" variants={imageVariants}>
             <img
               src={image}
               alt="Talent Forge Hero"
-              className="h-auto w-full"
+              className="h-auto w-full opacity-80"
             />
           </motion.div>
         </motion.div>

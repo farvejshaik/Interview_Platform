@@ -2,7 +2,7 @@ import { SignUp } from "@clerk/clerk-react";
 
 export default function SignUpPage() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-base-100 via-base-200 to-base-300 relative overflow-hidden px-4">
+    <div className="min-h-screen flex items-center justify-center bg-linear-to-r from-base-100 via-base-200 to-base-300 relative overflow-hidden px-4">
       {/* Decorative aurora shapes */}
       <div className="absolute top-[-10%] left-[-10%] h-[50vw] w-[50vw] rounded-full bg-primary/10 blur-3xl animate-pulse" />
       <div className="absolute bottom-[-10%] right-[-10%] h-[50vw] w-[50vw] rounded-full bg-secondary/10 blur-3xl animate-pulse" style={{ animationDelay: "1s" }} />

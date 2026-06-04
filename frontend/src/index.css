@@ -1,6 +1,31 @@
 @import "tailwindcss";
+
 @plugin "daisyui" {
-  themes: all;
+  themes: talentforge-light --default, talentforge-dark --prefersdark;
+}
+
+@plugin "daisyui/theme" {
+  name: "talentforge-light";
+  --color-primary: #8b5cf6;
+  --color-secondary: #a78bfa;
+  --color-accent: #c084fc;
+  --color-neutral: #f3f4f6;
+  --color-base-100: #fafafa;
+  --color-base-200: #f5f3ff;
+  --color-base-300: #e9e3f8;
+  --color-base-content: #18181b;
+}
+
+@plugin "daisyui/theme" {
+  name: "talentforge-dark";
+  --color-primary: #8b5cf6;
+  --color-secondary: #a78bfa;
+  --color-accent: #c084fc;
+  --color-neutral: #1e1b4b;
+  --color-base-100: #07020d;
+  --color-base-200: #120721;
+  --color-base-300: #220f3a;
+  --color-base-content: #f4f4f5;
 }
 
 @layer components {

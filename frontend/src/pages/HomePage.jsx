@@ -67,7 +67,7 @@ function HomePage() {
       ];
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-base-100 via-base-200 to-base-300 text-base-content">
+    <div className="min-h-screen bg-linear-to-r from-base-100 via-base-100/50 to-base-200 text-base-content">
       <Navbar1 />
 
       <main>

@@ -25,7 +25,7 @@ const BentoGrid = () => {
 
       <div className="grid auto-rows-max grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
         {/* Feature 1 - Large */}
-        <BentoItem className="col-span-1 flex flex-col justify-between rounded-2xl border border-base-content/10 bg-base-100 p-8 shadow-lg md:col-span-2 lg:col-span-2 lg:row-span-2">
+        <BentoItem className="col-span-1 flex flex-col justify-between rounded-2xl border border-base-content/3 bg-base-100/70 p-8 shadow-lg md:col-span-2 lg:col-span-2 lg:row-span-2">
           <div>
             <div className="size-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-4">
               <VideoIcon className="size-8 text-primary" />
@@ -41,7 +41,7 @@ const BentoGrid = () => {
         </BentoItem>
 
         {/* Feature 2 */}
-        <BentoItem className="col-span-1 flex flex-col justify-between rounded-2xl border border-base-content/10 bg-base-100 p-6 shadow-lg md:col-span-1 lg:col-span-1">
+        <BentoItem className="col-span-1 flex flex-col justify-between rounded-2xl border border-base-content/3 bg-base-100/70 p-6 shadow-lg md:col-span-1 lg:col-span-1">
           <div>
             <div className="size-12 bg-secondary/10 rounded-xl flex items-center justify-center mb-3">
               <Code2Icon className="size-6 text-secondary" />
@@ -57,7 +57,7 @@ const BentoGrid = () => {
         </BentoItem>
 
         {/* Feature 3 */}
-        <BentoItem className="col-span-1 flex flex-col justify-between rounded-2xl border border-base-content/10 bg-base-100 p-6 shadow-lg md:col-span-1 lg:col-span-1">
+        <BentoItem className="col-span-1 flex flex-col justify-between rounded-2xl border border-base-content/3 bg-base-100/70 p-6 shadow-lg md:col-span-1 lg:col-span-1">
           <div>
             <div className="size-12 bg-accent/10 rounded-xl flex items-center justify-center mb-3">
               <UsersIcon className="size-6 text-accent" />
@@ -73,7 +73,7 @@ const BentoGrid = () => {
         </BentoItem>
 
         {/* Feature 4 */}
-        <BentoItem className="col-span-1 flex flex-col justify-between rounded-2xl border border-base-content/10 bg-base-100 p-6 shadow-lg md:col-span-1 lg:col-span-1">
+        <BentoItem className="col-span-1 flex flex-col justify-between rounded-2xl border border-base-content/3 bg-base-100/70 p-6 shadow-lg md:col-span-1 lg:col-span-1">
           <div>
             <div className="size-12 bg-secondary/10 rounded-xl flex items-center justify-center mb-3">
               <CheckIcon className="size-6 text-secondary" />
@@ -88,7 +88,7 @@ const BentoGrid = () => {
         </BentoItem>
 
         {/* Feature 5 */}
-        <BentoItem className="col-span-1 flex flex-col justify-between rounded-2xl border border-base-content/10 bg-base-100 p-6 shadow-lg md:col-span-1 lg:col-span-1">
+        <BentoItem className="col-span-1 flex flex-col justify-between rounded-2xl border border-base-content/3 bg-base-100/70 p-6 shadow-lg md:col-span-1 lg:col-span-1">
           <div>
             <div className="size-12 bg-primary/10 rounded-xl flex items-center justify-center mb-3">
               <ZapIcon className="size-6 text-primary" />
