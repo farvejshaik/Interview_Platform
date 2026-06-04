@@ -5,7 +5,7 @@ import {
   ZapIcon,
 } from "lucide-react";
 import { useUser } from "@clerk/clerk-react";
-import { Navbar1 } from "../components/ui/navbar-1";
+import { Navbar } from "../components/ui/Navbar";
 import HeroSection from "../components/ui/hero-section";
 import { BentoGrid } from "../components/ui/bento-grid";
 import { TestimonialsSection } from "../components/ui/testimonials";
@@ -67,8 +67,8 @@ function HomePage() {
       ];
 
   return (
-    <div className="min-h-screen bg-linear-to-r from-base-100 via-base-100/50 to-base-200 text-base-content">
-      <Navbar1 />
+    <div className="min-h-screen bg-base-200 text-base-content">
+      <Navbar />
 
       <main>
         <HeroSection
