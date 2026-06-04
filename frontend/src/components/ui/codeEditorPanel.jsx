@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import Editor from "@monaco-editor/react";
-import { Loader2Icon, PlayIcon, PauseIcon, ClockIcon } from "lucide-react";
+import { Loader2Icon, PlayIcon, PauseIcon, ClockIcon, ZoomInIcon, ZoomOutIcon } from "lucide-react";
 import { LANGUAGE_CONFIG } from "../../data/problems";
 
 const TALENTFORGE_THEME = {
@@ -96,6 +96,14 @@ function CodeEditorPanel({
   onRunCode,
 }) {
   const editorRef = useRef(null);
+  const [fontSize, setFontSize] = useState(() => {
+    const saved = localStorage.getItem("editor-font-size");
+    return saved ? parseInt(saved) : 16;
+  });
+
+  useEffect(() => {
+    localStorage.setItem("editor-font-size", fontSize);
+  }, [fontSize]);
 
   const handleBeforeMount = (monaco) => {
     monaco.editor.defineTheme("talentforge-dark", TALENTFORGE_THEME);
@@ -122,10 +130,30 @@ function CodeEditorPanel({
               </option>
             ))}
           </select>
+          <div className="flex items-center gap-1 ml-2 border-l border-base-300 pl-3">
+            <button
+              className="btn btn-ghost btn-xs btn-square"
+              onClick={() => setFontSize((s) => Math.max(10, s - 1))}
+              disabled={fontSize <= 10}
+              title="Decrease font size"
+            >
+              <ZoomOutIcon className="size-3.5" />
+            </button>
+            <span className="text-xs font-mono text-base-content/60 min-w-[20px] text-center">{fontSize}</span>
+            <button
+              className="btn btn-ghost btn-xs btn-square"
+              onClick={() => setFontSize((s) => Math.min(30, s + 1))}
+              disabled={fontSize >= 30}
+              title="Increase font size"
+            >
+              <ZoomInIcon className="size-3.5" />
+            </button>
+          </div>
         </div>
 
-        <Stopwatch />
-        <button className="btn btn-primary btn-sm gap-2" disabled={isRunning} onClick={onRunCode}>
+        <div className="flex items-center gap-3">
+          <Stopwatch />
+          <button className="btn btn-primary btn-sm gap-2" disabled={isRunning} onClick={onRunCode}>
           {isRunning ? (
             <>
               <Loader2Icon className="size-4 animate-spin" />
@@ -139,6 +167,7 @@ function CodeEditorPanel({
           )}
         </button>
       </div>
+      </div>
 
       <div className="flex-1">
         <Editor
@@ -150,7 +179,7 @@ function CodeEditorPanel({
           beforeMount={handleBeforeMount}
           onMount={handleMount}
           options={{
-            fontSize: 16,
+            fontSize,
             lineNumbers: "on",
             scrollBeyondLastLine: false,
             automaticLayout: true,

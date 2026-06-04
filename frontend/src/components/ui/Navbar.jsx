@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Menu, X, SparklesIcon, Sun, Moon, LogOutIcon, Code2Icon } from "lucide-react";
+import { Menu, X, Sun, Moon, LogOutIcon, Code2Icon } from "lucide-react";
 import { Link } from "react-router";
 import { useUser, useClerk } from "@clerk/clerk-react";
 
@@ -58,23 +58,29 @@ const Navbar = () => {
             className="flex items-center gap-3 transition-transform duration-200 hover:scale-105"
           >
             <motion.div
-              className="flex h-8 w-8 items-center justify-center rounded-lg bg-linear-to-br from-primary to-secondary shadow-md"
+              className="h-12 w-auto"
               initial={{ scale: 0.8 }}
               animate={{ scale: 1 }}
               whileHover={{ rotate: 10 }}
               transition={{ duration: 0.3 }}
             >
-              <SparklesIcon className="h-5 w-5 text-primary-content" />
+              <img src="/logo.png" alt="Next Hire" className="h-12 w-auto object-contain" style={{ filter: "brightness(0) invert(1) drop-shadow(0 0 6px #8b5cf6)" }} />
             </motion.div>
             <div className="hidden flex-col sm:flex">
               <span className="bg-linear-to-r from-primary via-secondary to-accent bg-clip-text font-mono text-lg font-black tracking-wider text-transparent">
-                Talent Forge
+                Next Hire
               </span>
             </div>
           </Link>
 
           <div className="hidden md:flex items-center gap-4">
             <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
+            <Link
+              to="/blog"
+              className="flex items-center gap-2 text-sm font-medium text-base-content/70 hover:text-base-content transition-colors"
+            >
+              Blog
+            </Link>
             {isSignedIn ? (
               <>
                 <Link
@@ -147,6 +153,13 @@ const Navbar = () => {
                 </span>
                 <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
               </div>
+              <Link
+                to="/blog"
+                className="flex items-center gap-3 rounded-lg border border-base-content/10 px-4 py-3 text-base font-medium text-base-content/70 hover:text-base-content hover:bg-base-200 transition-colors"
+                onClick={toggleMenu}
+              >
+                Blog
+              </Link>
               {isSignedIn ? (
                 <>
                   <Link

@@ -1,7 +1,6 @@
 import {
   CheckIcon,
   Code2Icon,
-  SparklesIcon,
   ZapIcon,
 } from "lucide-react";
 import { useUser } from "@clerk/clerk-react";
@@ -113,17 +112,17 @@ function HomePage() {
       </main>
 
       <Footer
-        logo={<SparklesIcon className="w-8 h-8 text-primary" />}
-        brandName="Talent Forge"
+        logo={<img src="/logo.png" alt="Next Hire" className="h-12 w-auto object-contain" style={{ filter: "brightness(0) invert(1) drop-shadow(0 0 6px #8b5cf6)" }} />}
+        brandName="Next Hire"
         socialLinks={[
           {
             icon: <TwitterIcon className="h-5 w-5" />,
-            href: "https://twitter.com",
+            href: "https://x.com/FarvejFaru",
             label: "Twitter",
           },
           {
             icon: <GithubIcon className="h-5 w-5" />,
-            href: "https://github.com",
+            href: "https://github.com/farvejshaik",
             label: "GitHub",
           },
         ]}
@@ -139,7 +138,7 @@ function HomePage() {
           { href: "/contact", label: "Contact" },
         ]}
         copyright={{
-          text: "© 2026 Talent Forge",
+          text: "© 2026 Next Hire",
           license: "All rights reserved",
         }}
       />

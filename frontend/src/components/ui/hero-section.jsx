@@ -138,10 +138,15 @@ const HeroSection = ({ title, subtitle, actions, stats, image, className }) => {
             style={{ transitionDelay: "0.5s" }}
           />
 
-          <motion.div className="relative w-full" variants={imageVariants}>
+          <motion.div
+            className="relative w-full cursor-pointer"
+            variants={imageVariants}
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 300, damping: 15 }}
+          >
             <img
               src={image}
-              alt="Talent Forge Hero"
+              alt="Next Hire Hero"
               className="h-auto w-full opacity-80"
             />
           </motion.div>

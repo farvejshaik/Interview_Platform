@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --animate-marquee: marquee var(--duration, 30s) linear infinite;
+  --animate-marquee-reverse: marquee-reverse var(--duration, 30s) linear infinite;
+}
+
 @plugin "daisyui" {
   themes: talentforge-light --default, talentforge-dark --prefersdark;
 }
@@ -76,11 +82,10 @@
   }
 }
 
-@theme {
-  --animate-marquee: marquee var(--duration, 30s) linear infinite;
-  --animate-marquee-reverse: marquee-reverse var(--duration, 30s) linear infinite;
-}
-
 button {
   cursor: pointer;
+}
+
+.logo-theme {
+  filter: brightness(0) invert(1) drop-shadow(0 0 6px var(--color-primary));
 }
