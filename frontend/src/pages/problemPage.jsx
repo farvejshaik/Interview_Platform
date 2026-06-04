@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router";
 import { PROBLEMS } from "../data/problems";
 import Navbar from "../components/ui/Navbar";
@@ -18,6 +18,11 @@ function ProblemWorkspace({ problem, problemId, onProblemChange, allProblems }) 
   const [output, setOutput] = useState(null);
   const [isRunning, setIsRunning] = useState(false);
   const [showOutput, setShowOutput] = useState(false);
+  const [failedCount, setFailedCount] = useState(0);
+
+  useEffect(() => {
+    setFailedCount(0);
+  }, [problemId]);
 
   const handleLanguageChange = (e) => {
     const newLang = e.target.value;
@@ -81,6 +86,7 @@ function ProblemWorkspace({ problem, problemId, onProblemChange, allProblems }) 
         toast.success("All tests passed! Great job!");
       } else {
         setOutput({ ...result, expected: expectedOutput });
+        setFailedCount((prev) => prev + 1);
         toast("Output does not match expected");
       }
     } else {
@@ -97,6 +103,7 @@ function ProblemWorkspace({ problem, problemId, onProblemChange, allProblems }) 
           currentProblemId={problemId}
           onProblemChange={onProblemChange}
           allProblems={allProblems}
+          failedCount={failedCount}
         />
       </Panel>
 

@@ -803,4 +803,131 @@ export const PROBLEMS = {
       java: "10\n4",
     },
   },
+
+  "climbing-stairs": {
+    id: "climbing-stairs",
+    title: "Climbing Stairs",
+    difficulty: "Easy",
+    category: "Dynamic Programming",
+    description: {
+      text: "You are climbing a staircase. It takes n steps to reach the top. Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?",
+    },
+    examples: [
+      { input: "n = 2", output: "2" },
+      { input: "n = 3", output: "3" },
+    ],
+    constraints: ["1 ≤ n ≤ 45"],
+    starterCode: {
+      javascript: `function climbStairs(n) {\n  // Write your code here\n  \n}\n\nconsole.log(climbStairs(2));\nconsole.log(climbStairs(3));\nconsole.log(climbStairs(5));`,
+      python: `def climb_stairs(n):\n    # Write your code here\n    pass\n\nprint(climb_stairs(2))\nprint(climb_stairs(3))\nprint(climb_stairs(5))`,
+      java: `public class Solution {\n    public int climbStairs(int n) {\n        // Write your code here\n        \n    }\n\n    public static void main(String[] args) {\n        Solution s = new Solution();\n        System.out.println(s.climbStairs(2));\n        System.out.println(s.climbStairs(3));\n        System.out.println(s.climbStairs(5));\n    }\n}`,
+    },
+    expectedOutput: {
+      javascript: "2\n3\n8",
+      python: "2\n3\n8",
+      java: "2\n3\n8",
+    },
+  },
+
+  "best-time-to-buy-sell-stock": {
+    id: "best-time-to-buy-sell-stock",
+    title: "Best Time to Buy and Sell Stock",
+    difficulty: "Easy",
+    category: "Arrays",
+    description: {
+      text: "You are given an array prices where prices[i] is the price of a given stock on the ith day. You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock. Return the maximum profit you can achieve. If no profit can be made, return 0.",
+    },
+    examples: [
+      { input: "prices = [7,1,5,3,6,4]", output: "5" },
+      { input: "prices = [7,6,4,3,1]", output: "0" },
+    ],
+    constraints: ["1 ≤ prices.length ≤ 10^5", "0 ≤ prices[i] ≤ 10^4"],
+    starterCode: {
+      javascript: `function maxProfit(prices) {\n  // Write your code here\n  \n}\n\nconsole.log(maxProfit([7,1,5,3,6,4]));\nconsole.log(maxProfit([7,6,4,3,1]));`,
+      python: `def max_profit(prices):\n    # Write your code here\n    pass\n\nprint(max_profit([7,1,5,3,6,4]))\nprint(max_profit([7,6,4,3,1]))`,
+      java: `public class Solution {\n    public int maxProfit(int[] prices) {\n        // Write your code here\n        \n    }\n\n    public static void main(String[] args) {\n        Solution s = new Solution();\n        System.out.println(s.maxProfit(new int[]{7,1,5,3,6,4}));\n        System.out.println(s.maxProfit(new int[]{7,6,4,3,1}));\n    }\n}`,
+    },
+    expectedOutput: {
+      javascript: "5\n0",
+      python: "5\n0",
+      java: "5\n0",
+    },
+  },
+
+  "maximum-subarray": {
+    id: "maximum-subarray",
+    title: "Maximum Subarray",
+    difficulty: "Medium",
+    category: "Arrays",
+    description: {
+      text: "Given an integer array nums, find the subarray with the largest sum, and return its sum.",
+    },
+    examples: [
+      { input: "nums = [-2,1,-3,4,-1,2,1,-5,4]", output: "6" },
+      { input: "nums = [1]", output: "1" },
+      { input: "nums = [5,4,-1,7,8]", output: "23" },
+    ],
+    constraints: ["1 ≤ nums.length ≤ 10^5", "-10^4 ≤ nums[i] ≤ 10^4"],
+    starterCode: {
+      javascript: `function maxSubArray(nums) {\n  // Write your code here\n  \n}\n\nconsole.log(maxSubArray([-2,1,-3,4,-1,2,1,-5,4]));\nconsole.log(maxSubArray([1]));\nconsole.log(maxSubArray([5,4,-1,7,8]));`,
+      python: `def max_sub_array(nums):\n    # Write your code here\n    pass\n\nprint(max_sub_array([-2,1,-3,4,-1,2,1,-5,4]))\nprint(max_sub_array([1]))\nprint(max_sub_array([5,4,-1,7,8]))`,
+      java: `public class Solution {\n    public int maxSubArray(int[] nums) {\n        // Write your code here\n        \n    }\n\n    public static void main(String[] args) {\n        Solution s = new Solution();\n        System.out.println(s.maxSubArray(new int[]{-2,1,-3,4,-1,2,1,-5,4}));\n        System.out.println(s.maxSubArray(new int[]{1}));\n        System.out.println(s.maxSubArray(new int[]{5,4,-1,7,8}));\n    }\n}`,
+    },
+    expectedOutput: {
+      javascript: "6\n1\n23",
+      python: "6\n1\n23",
+      java: "6\n1\n23",
+    },
+  },
+
+  "container-with-most-water": {
+    id: "container-with-most-water",
+    title: "Container With Most Water",
+    difficulty: "Medium",
+    category: "Two Pointers",
+    description: {
+      text: "You are given an integer array height of length n. There are n vertical lines drawn such that the two endpoints of the ith line are (i, 0) and (i, height[i]). Find two lines that together with the x-axis form a container that contains the most water. Return the maximum amount of water a container can store.",
+    },
+    examples: [
+      { input: "height = [1,8,6,2,5,4,8,3,7]", output: "49" },
+      { input: "height = [1,1]", output: "1" },
+    ],
+    constraints: ["n == height.length", "2 ≤ n ≤ 10^5", "0 ≤ height[i] ≤ 10^4"],
+    starterCode: {
+      javascript: `function maxArea(height) {\n  // Write your code here\n  \n}\n\nconsole.log(maxArea([1,8,6,2,5,4,8,3,7]));\nconsole.log(maxArea([1,1]));`,
+      python: `def max_area(height):\n    # Write your code here\n    pass\n\nprint(max_area([1,8,6,2,5,4,8,3,7]))\nprint(max_area([1,1]))`,
+      java: `public class Solution {\n    public int maxArea(int[] height) {\n        // Write your code here\n        \n    }\n\n    public static void main(String[] args) {\n        Solution s = new Solution();\n        System.out.println(s.maxArea(new int[]{1,8,6,2,5,4,8,3,7}));\n        System.out.println(s.maxArea(new int[]{1,1}));\n    }\n}`,
+    },
+    expectedOutput: {
+      javascript: "49\n1",
+      python: "49\n1",
+      java: "49\n1",
+    },
+  },
+
+  "word-break": {
+    id: "word-break",
+    title: "Word Break",
+    difficulty: "Medium",
+    category: "Dynamic Programming",
+    description: {
+      text: "Given a string s and a dictionary of strings wordDict, return true if s can be segmented into a space-separated sequence of one or more dictionary words. Note that the same word in the dictionary may be reused multiple times in the segmentation.",
+    },
+    examples: [
+      { input: "s = 'leetcode', wordDict = ['leet','code']", output: "true" },
+      { input: "s = 'applepenapple', wordDict = ['apple','pen']", output: "true" },
+      { input: "s = 'catsandog', wordDict = ['cats','dog','sand','and','cat']", output: "false" },
+    ],
+    constraints: ["1 ≤ s.length ≤ 300", "1 ≤ wordDict.length ≤ 1000", "1 ≤ wordDict[i].length ≤ 20"],
+    starterCode: {
+      javascript: `function wordBreak(s, wordDict) {\n  // Write your code here\n  \n}\n\nconsole.log(wordBreak('leetcode', ['leet','code']));\nconsole.log(wordBreak('applepenapple', ['apple','pen']));\nconsole.log(wordBreak('catsandog', ['cats','dog','sand','and','cat']));`,
+      python: `def word_break(s, word_dict):\n    # Write your code here\n    pass\n\nprint(word_break('leetcode', ['leet','code']))\nprint(word_break('applepenapple', ['apple','pen']))\nprint(word_break('catsandog', ['cats','dog','sand','and','cat']))`,
+      java: `import java.util.*;\n\npublic class Solution {\n    public boolean wordBreak(String s, List<String> wordDict) {\n        // Write your code here\n        \n    }\n\n    public static void main(String[] args) {\n        Solution sol = new Solution();\n        System.out.println(sol.wordBreak(\"leetcode\", Arrays.asList(\"leet\",\"code\")));\n        System.out.println(sol.wordBreak(\"applepenapple\", Arrays.asList(\"apple\",\"pen\")));\n        System.out.println(sol.wordBreak(\"catsandog\", Arrays.asList(\"cats\",\"dog\",\"sand\",\"and\",\"cat\")));\n    }\n}`,
+    },
+    expectedOutput: {
+      javascript: "true\ntrue\nfalse",
+      python: "True\nTrue\nFalse",
+      java: "true\ntrue\nfalse",
+    },
+  },
 };

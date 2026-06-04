@@ -44,14 +44,17 @@ export function Footer({
             ))}
           </ul>
         </div>
-        <div className="mt-8 border-t border-base-content/10 pt-8 lg:grid lg:grid-cols-10">
-          <nav className="lg:col-[4/11] lg:mt-0">
-            <ul className="-mx-2 -my-1 flex list-none flex-wrap">
+        <div className="mt-8 border-t border-base-content/10 pt-8 flex flex-col items-center gap-6 lg:grid lg:grid-cols-3 lg:items-start">
+          <div className="text-sm font-medium text-base-content/60 lg:justify-self-start">
+            {copyright.text}{copyright.license ? ` — ${copyright.license}` : ""}
+          </div>
+          <nav className="lg:justify-self-center">
+            <ul className="flex list-none flex-wrap justify-center gap-x-6 gap-y-2">
               {mainLinks.map((link, i) => (
-                <li key={i} className="mx-2 my-1 shrink-0">
+                <li key={i}>
                   <a
                     href={link.href}
-                    className="text-sm text-base-content/70 underline-offset-4 transition-colors hover:text-base-content hover:underline"
+                    className="text-sm font-semibold text-base-content/80 transition-colors hover:text-base-content"
                   >
                     {link.label}
                   </a>
@@ -59,23 +62,19 @@ export function Footer({
               ))}
             </ul>
           </nav>
-          <div className="mt-6 lg:col-[4/11] lg:mt-0">
-            <ul className="-mx-3 -my-1 flex list-none flex-wrap lg:justify-end">
+          <div className="lg:justify-self-end">
+            <ul className="flex list-none flex-wrap justify-center gap-x-5 gap-y-2">
               {legalLinks.map((link, i) => (
-                <li key={i} className="mx-3 my-1 shrink-0">
+                <li key={i}>
                   <a
                     href={link.href}
-                    className="text-sm text-base-content/50 underline-offset-4 transition-colors hover:text-base-content/70 hover:underline"
+                    className="text-sm font-medium text-base-content/60 transition-colors hover:text-base-content/80"
                   >
                     {link.label}
                   </a>
                 </li>
               ))}
             </ul>
-          </div>
-          <div className="mt-6 whitespace-nowrap text-sm leading-6 text-base-content/50 lg:col-[1/4] lg:row-[1/3] lg:mt-0">
-            <div>{copyright.text}</div>
-            {copyright.license && <div>{copyright.license}</div>}
           </div>
         </div>
       </div>
