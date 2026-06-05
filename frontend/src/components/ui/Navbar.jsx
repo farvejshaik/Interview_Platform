@@ -6,12 +6,19 @@ import { Menu, X, Sun, Moon, LogOutIcon, Code2Icon } from "lucide-react";
 import { Link } from "react-router";
 import { useUser, useClerk } from "@clerk/clerk-react";
 import { useTheme } from "../../lib/useTheme";
+import {
+  NavigationMenu,
+  NavigationMenuList,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  navigationMenuTriggerStyle,
+} from "./navigation-menu";
 
 function ThemeToggle({ theme, toggleTheme }) {
   return (
     <button
       onClick={toggleTheme}
-      className="flex h-10 w-10 items-center justify-center rounded-full border border-base-content/3 bg-base-100/30 text-base-content hover:bg-base-200 transition-colors cursor-pointer"
+      className="flex h-10 w-10 items-center justify-center rounded-full border border-base-content/30 bg-base-100/30 text-base-content hover:bg-base-200 transition-colors"
       aria-label="Toggle Theme"
     >
       {theme === "talentforge-light" ? (
@@ -34,7 +41,7 @@ const Navbar = () => {
   return (
     <header className="w-full">
       <div className="page-container py-4 md:py-6">
-        <div className="relative z-10 flex w-full items-center justify-between rounded-full border border-base-content/3 bg-base-100/70 px-6 py-3 shadow-lg backdrop-blur-sm">
+        <div className="relative z-10 flex w-full items-center justify-between rounded-full border border-base-content/30 bg-base-100/70 px-6 py-3 shadow-lg backdrop-blur-sm">
           <Link
             to="/"
             className="flex items-center gap-3 transition-transform duration-200 hover:scale-105"
@@ -46,7 +53,11 @@ const Navbar = () => {
               whileHover={{ rotate: 10 }}
               transition={{ duration: 0.3 }}
             >
-              <img src="/logo.png" alt="Next Hire" className="h-12 w-auto object-contain" style={{ filter: "brightness(0) invert(1) drop-shadow(0 0 6px #8b5cf6)" }} />
+              <img
+                src="/logo.png"
+                alt="Next Hire"
+                className="h-12 w-auto object-contain logo-theme"
+              />
             </motion.div>
             <div className="hidden flex-col sm:flex">
               <span className="bg-linear-to-r from-primary via-secondary to-accent bg-clip-text font-mono text-lg font-black tracking-wider text-transparent">
@@ -56,30 +67,48 @@ const Navbar = () => {
           </Link>
 
           <div className="hidden md:flex items-center gap-4">
+            <NavigationMenu viewport={false}>
+              <NavigationMenuList>
+                <NavigationMenuItem>
+                  <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+                    <Link to="/roadmaps" className="text-base-content/70 hover:text-base-content">
+                      Roadmaps
+                    </Link>
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+                    <Link to="/blog" className="text-base-content/70 hover:text-base-content">
+                      Blog
+                    </Link>
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
+                {isSignedIn && (
+                  <NavigationMenuItem>
+                    <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+                      <Link
+                        to="/problems"
+                        className="flex items-center gap-2 text-base-content/70 hover:text-base-content"
+                      >
+                        <Code2Icon className="size-4" />
+                        Problems
+                      </Link>
+                    </NavigationMenuLink>
+                  </NavigationMenuItem>
+                )}
+              </NavigationMenuList>
+            </NavigationMenu>
+
             <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
-            <Link
-              to="/blog"
-              className="flex items-center gap-2 text-sm font-medium text-base-content/70 hover:text-base-content transition-colors"
-            >
-              Blog
-            </Link>
+
             {isSignedIn ? (
-              <>
-                <Link
-                  to="/problems"
-                  className="flex items-center gap-2 text-sm font-medium text-base-content/70 hover:text-base-content transition-colors"
-                >
-                  <Code2Icon className="size-4" />
-                  Problems
-                </Link>
-                <button
-                  onClick={() => signOut()}
-                  className="flex items-center gap-2 rounded-full border border-base-content/20 px-4 py-2 text-sm font-medium text-base-content/70 hover:text-base-content hover:bg-base-200 transition-colors"
-                >
-                  <LogOutIcon className="size-4" />
-                  Sign Out
-                </button>
-              </>
+              <button
+                onClick={() => signOut()}
+                className="flex items-center gap-2 rounded-full border border-base-content/20 px-4 py-2 text-sm font-medium text-base-content/70 hover:text-base-content hover:bg-base-200 transition-colors"
+              >
+                <LogOutIcon className="size-4" />
+                Sign Out
+              </button>
             ) : (
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
@@ -129,12 +158,19 @@ const Navbar = () => {
               <X className="h-6 w-6 text-base-content" />
             </motion.button>
             <div className="flex flex-col space-y-6">
-              <div className="flex items-center justify-between border-b border-base-content/3 pb-4">
+              <div className="flex items-center justify-between border-b border-base-content/30 pb-4">
                 <span className="text-base font-semibold text-base-content">
                   Theme
                 </span>
                 <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
               </div>
+              <Link
+                to="/roadmaps"
+                className="flex items-center gap-3 rounded-lg border border-base-content/10 px-4 py-3 text-base font-medium text-base-content/70 hover:text-base-content hover:bg-base-200 transition-colors"
+                onClick={toggleMenu}
+              >
+                Roadmaps
+              </Link>
               <Link
                 to="/blog"
                 className="flex items-center gap-3 rounded-lg border border-base-content/10 px-4 py-3 text-base font-medium text-base-content/70 hover:text-base-content hover:bg-base-200 transition-colors"

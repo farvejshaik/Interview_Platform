@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router";
+import { FileTextIcon, CodeIcon, TerminalIcon } from "lucide-react";
 import { PROBLEMS } from "../data/problems";
 import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
 import ProblemDescription from "../components/ui/problemDescription";
@@ -17,6 +18,14 @@ function ProblemWorkspace({ problem, problemId, onProblemChange, allProblems }) 
   const [isRunning, setIsRunning] = useState(false);
   const [showOutput, setShowOutput] = useState(false);
   const [failedCount, setFailedCount] = useState(0);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const [mobileTab, setMobileTab] = useState("code");
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     setFailedCount(0);
@@ -70,6 +79,7 @@ function ProblemWorkspace({ problem, problemId, onProblemChange, allProblems }) 
     setIsRunning(true);
     setShowOutput(true);
     setOutput(null);
+    if (isMobile) setMobileTab("code");
 
     const result = await executeCode(selectedLanguage, code);
     setIsRunning(false);
@@ -95,7 +105,70 @@ function ProblemWorkspace({ problem, problemId, onProblemChange, allProblems }) 
     }
   };
 
-  return (
+  const MOBILE_TABS = [
+    { id: "description", label: "Description", icon: FileTextIcon },
+    { id: "code", label: "Code", icon: CodeIcon },
+    { id: "output", label: "Output", icon: TerminalIcon },
+  ];
+
+  return isMobile ? (
+    <div className="h-full flex flex-col">
+      <div className="flex border-b border-base-300 bg-base-200/50 shrink-0">
+        {MOBILE_TABS.map((tab) => {
+          const Icon = tab.icon;
+          return (
+            <button
+              key={tab.id}
+              onClick={() => setMobileTab(tab.id)}
+              className={`flex items-center gap-1.5 px-4 py-2.5 text-xs font-medium border-b-2 transition-colors ${
+                mobileTab === tab.id
+                  ? "border-primary text-primary"
+                  : "border-transparent text-base-content/50"
+              }`}
+            >
+              <Icon className="size-3.5" />
+              {tab.label}
+            </button>
+          );
+        })}
+      </div>
+      <div className="flex-1 overflow-hidden">
+        {mobileTab === "description" && (
+          <ProblemDescription
+            problem={problem}
+            currentProblemId={problemId}
+            onProblemChange={onProblemChange}
+            allProblems={allProblems}
+            failedCount={failedCount}
+          />
+        )}
+        {mobileTab === "code" && (
+          <div className="h-full flex flex-col">
+            <div className="flex-1 overflow-hidden">
+              <CodeEditorPanel
+                selectedLanguage={selectedLanguage}
+                code={code}
+                isRunning={isRunning}
+                onLanguageChange={handleLanguageChange}
+                onCodeChange={setCode}
+                onRunCode={handleRunCode}
+              />
+            </div>
+            {showOutput && (
+              <div className="h-1/2 border-t border-base-300 overflow-hidden">
+                <OutputPanel output={output} onClose={() => setShowOutput(false)} />
+              </div>
+            )}
+          </div>
+        )}
+        {mobileTab === "output" && (
+          <div className="h-full">
+            <OutputPanel output={output} onClose={null} />
+          </div>
+        )}
+      </div>
+    </div>
+  ) : (
     <PanelGroup direction="horizontal">
       <Panel defaultSize={40} minSize={30}>
         <ProblemDescription
