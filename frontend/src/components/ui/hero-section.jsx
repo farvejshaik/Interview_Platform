@@ -146,7 +146,7 @@ const HeroSection = ({ title, subtitle, actions, stats, image, className }) => {
           >
             <img
               src={image}
-              alt="Next Hire Hero"
+              alt="TalentForge Hero"
               className="h-auto w-full opacity-80"
             />
           </motion.div>

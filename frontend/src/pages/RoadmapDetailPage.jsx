@@ -120,8 +120,8 @@ function RoadmapDetailPage() {
       </main>
 
       <Footer
-        logo={<img src="/logo.png" alt="Next Hire" className="h-12 w-auto object-contain" style={{ filter: "brightness(0) invert(1) drop-shadow(0 0 6px #8b5cf6)" }} />}
-        brandName="Next Hire"
+        logo={<img src="/logo.png" alt="TalentForge" className="h-12 w-auto object-contain" style={{ filter: "brightness(0) invert(1) drop-shadow(0 0 6px #8b5cf6)" }} />}
+        brandName="TalentForge"
         socialLinks={[
           { icon: <TwitterIcon className="h-5 w-5" />, href: "https://x.com/FarvejFaru", label: "Twitter" },
           { icon: <GithubIcon className="h-5 w-5" />, href: "https://github.com/farvejshaik", label: "GitHub" },
@@ -138,7 +138,7 @@ function RoadmapDetailPage() {
           { href: "/terms", label: "Terms" },
           { href: "/contact", label: "Contact" },
         ]}
-        copyright={{ text: "© 2026 Next Hire", license: "All rights reserved" }}
+        copyright={{ text: "© 2026 TalentForge", license: "All rights reserved" }}
       />
 
       <RoadmapModal node={selectedNode} onClose={handleCloseModal} />

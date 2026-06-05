@@ -4,7 +4,7 @@ export const BLOG_POSTS = [
     title: "How to Ace Your Technical Interview",
     excerpt: "Learn the proven strategies and techniques that will help you stand out in your next technical interview.",
     date: "May 15, 2026",
-    author: "Next Hire Team",
+    author: "TalentForge Team",
     readTime: "5 min read",
     category: "Interview Tips",
     image: "/hero.png",
@@ -43,7 +43,7 @@ When approaching any coding problem, follow this structured approach:
 
 ## Practice Makes Perfect
 
-Use Next Hire's problem library to practice daily. Start with easy problems and gradually work your way up to harder ones. Aim to solve at least 2-3 problems per day leading up to your interview.
+Use TalentForge's problem library to practice daily. Start with easy problems and gradually work your way up to harder ones. Aim to solve at least 2-3 problems per day leading up to your interview.
 
 ## Mock Interviews
 
@@ -62,7 +62,7 @@ Nothing beats real practice. Conduct mock interviews with friends or use our col
     title: "Top 10 LeetCode Patterns You Must Know",
     excerpt: "Master these essential coding patterns to solve 80% of interview problems with confidence.",
     date: "May 10, 2026",
-    author: "Next Hire Team",
+    author: "TalentForge Team",
     readTime: "8 min read",
     category: "Study Guide",
     image: "/hero.png",
@@ -182,7 +182,7 @@ Pick one pattern per week and solve 5-10 problems using that pattern. This focus
     title: "System Design Interviews: A Complete Guide",
     excerpt: "Everything you need to know about system design interviews, from basic concepts to advanced topics.",
     date: "May 5, 2026",
-    author: "Next Hire Team",
+    author: "TalentForge Team",
     readTime: "12 min read",
     category: "System Design",
     image: "/hero.png",
@@ -265,7 +265,7 @@ Follow these steps when approaching a system design question:
 
 ## Practice Resources
 
-Use Next Hire's collaborative platform to whiteboard system designs with peers. Draw architectures, discuss trade-offs, and get feedback in real-time.
+Use TalentForge's collaborative platform to whiteboard system designs with peers. Draw architectures, discuss trade-offs, and get feedback in real-time.
 `,
   },
   {
@@ -273,7 +273,7 @@ Use Next Hire's collaborative platform to whiteboard system designs with peers. 
     title: "JavaScript vs Python for Coding Interviews",
     excerpt: "Which language should you choose for your coding interviews? We break down the pros and cons.",
     date: "April 28, 2026",
-    author: "Next Hire Team",
+    author: "TalentForge Team",
     readTime: "6 min read",
     category: "Programming",
     image: "/hero.png",
@@ -340,7 +340,7 @@ One of the first decisions you'll make when preparing for coding interviews is w
     title: "Dynamic Programming Made Simple",
     excerpt: "Demystifying dynamic programming with practical examples and step-by-step problem-solving approaches.",
     date: "April 20, 2026",
-    author: "Next Hire Team",
+    author: "TalentForge Team",
     readTime: "10 min read",
     category: "Algorithms",
     image: "/hero.png",
@@ -446,7 +446,7 @@ function longestCommonSubsequence(text1, text2) {
 4. Determine the iteration order
 5. Optimize space if possible
 
-## Practice on Next Hire
+## Practice on TalentForge
 
 Try these DP problems in our problem library:
 - Climbing Stairs
@@ -461,7 +461,7 @@ Try these DP problems in our problem library:
     title: "Building Confidence for Technical Interviews",
     excerpt: "Practical tips to overcome interview anxiety and present your best self during technical interviews.",
     date: "April 15, 2026",
-    author: "Next Hire Team",
+    author: "TalentForge Team",
     readTime: "4 min read",
     category: "Career Advice",
     image: "/hero.png",
@@ -486,7 +486,7 @@ Don't just solve random problems. Follow a structured plan:
 - Record yourself and review
 
 ### 3. Build a Study Group
-- Pair program with friends on Next Hire
+- Pair program with friends on TalentForge
 - Explain concepts to others (teaching reinforces learning)
 - Get feedback on your communication style
 
@@ -534,7 +534,7 @@ Think: "They want to see how I think"
 
 Technical interviews are a two-way street. You're also evaluating whether the company is the right fit for you. Confidence comes from preparation, and preparation comes from consistent practice.
 
-Start your journey today with Next Hire — practice problems, collaborate with peers, and build the confidence you need to ace your interviews.
+Start your journey today with TalentForge — practice problems, collaborate with peers, and build the confidence you need to ace your interviews.
 `,
   },
   {
@@ -542,7 +542,7 @@ Start your journey today with Next Hire — practice problems, collaborate with 
     title: "Mastering Data Structures: A Complete Guide",
     excerpt: "From arrays to graphs — a comprehensive guide to understanding and implementing essential data structures for coding interviews.",
     date: "June 1, 2026",
-    author: "Next Hire Team",
+    author: "TalentForge Team",
     readTime: "10 min read",
     category: "Study Guide",
     image: "/hero.png",
@@ -688,7 +688,7 @@ function dfs(graph, start, visited = new Set()) {
 1. Implement each data structure from scratch at least once
 2. Know the time/space complexity of every operation
 3. Draw diagrams to visualize how data flows through structures
-4. Solve at least 5 problems per data structure on Next Hire
+4. Solve at least 5 problems per data structure on TalentForge
 `,
   },
   {
@@ -696,7 +696,7 @@ function dfs(graph, start, visited = new Set()) {
     title: "Cracking the Behavioral Interview",
     excerpt: "Learn how to tell compelling stories about your experience using the STAR method and leave a lasting impression.",
     date: "May 28, 2026",
-    author: "Next Hire Team",
+    author: "TalentForge Team",
     readTime: "7 min read",
     category: "Career Advice",
     image: "/hero.png",
@@ -780,7 +780,7 @@ Remember that behavioral interviews are a conversation, not an interrogation. Be
     title: "Dynamic Programming: From Zero to Hero",
     excerpt: "Demystify dynamic programming with a step-by-step framework. Learn to recognize DP problems and build optimal solutions with confidence.",
     date: "June 5, 2026",
-    author: "Next Hire Team",
+    author: "TalentForge Team",
     readTime: "12 min read",
     category: "Algorithms",
     image: "/hero.png",
@@ -913,7 +913,7 @@ function fibTab(n) {
 
 ## Practice Progression
 
-Start with these problems on Next Hire, in order:
+Start with these problems on TalentForge, in order:
 
 1. **Climbing Stairs** — Simple 1D DP, Fibonacci pattern
 2. **House Robber** — Slightly more complex 1D DP

@@ -34,7 +34,7 @@ export function TestimonialsSection() {
       role: "Software Engineer",
       company: "Tech Startup",
       content:
-        "Next Hire has completely transformed how I prepare for interviews. The real-time collaboration features are amazing!",
+        "TalentForge has completely transformed how I prepare for interviews. The real-time collaboration features are amazing!",
       avatar:
         "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=400&auto=format&fit=crop",
     },
@@ -97,7 +97,7 @@ export function TestimonialsSection() {
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-base-content/70">
             Join thousands of successful developers who have aced their
-            technical interviews with Next Hire
+            technical interviews with TalentForge
           </p>
         </div>
 

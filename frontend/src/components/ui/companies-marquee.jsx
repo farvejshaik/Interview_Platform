@@ -21,7 +21,7 @@ export function CompaniesMarquee() {
           </span>
         </h2>
         <p className="mx-auto mt-3 max-w-2xl text-base text-base-content/70">
-          Candidates from leading companies prepare for their next career move with Next Hire
+          Candidates from leading companies prepare for their next career move with TalentForge
         </p>
       </div>
       <div className="page-container">

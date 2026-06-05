@@ -10,9 +10,9 @@ export default function SignInPage() {
       <div className="relative z-10 w-full max-w-md flex flex-col items-center">
         {/* Logo / Link back to home */}
         <a href="/" className="flex items-center gap-2 mb-8 transition-transform hover:scale-105">
-          <img src="/logo.png" alt="Next Hire" className="h-14 w-auto object-contain" style={{ filter: "brightness(0) invert(1) drop-shadow(0 0 6px #8b5cf6)" }} />
+          <img src="/logo.png" alt="TalentForge" className="h-14 w-auto object-contain" style={{ filter: "brightness(0) invert(1) drop-shadow(0 0 6px #8b5cf6)" }} />
           <span className="bg-linear-to-r from-primary via-secondary to-accent bg-clip-text font-mono text-2xl font-black tracking-wider text-transparent">
-            Next Hire
+            TalentForge
           </span>
         </a>
 

@@ -51,14 +51,14 @@ function AboutPage() {
             <div className="mx-auto max-w-3xl text-center">
               <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
                 <span className="bg-linear-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
-                  About Next Hire
+                  About TalentForge
                 </span>
               </h1>
               <p className="mt-6 text-lg text-base-content/70 leading-relaxed">
-                Next Hire is a collaborative coding interview platform designed to help developers prepare for technical interviews. We provide a real-time coding environment with support for JavaScript, Python, and Java, along with a growing library of interview-style problems.
+                TalentForge is a collaborative coding interview platform designed to help developers prepare for technical interviews. We provide a real-time coding environment with support for JavaScript, Python, and Java, along with a growing library of interview-style problems.
               </p>
               <p className="mt-4 text-lg text-base-content/70 leading-relaxed">
-                Whether you're practicing solo or pair programming with a friend, Next Hire offers the tools you need to succeed in your technical interviews.
+                Whether you're practicing solo or pair programming with a friend, TalentForge offers the tools you need to succeed in your technical interviews.
               </p>
             </div>
           </div>
@@ -99,8 +99,8 @@ function AboutPage() {
       </main>
 
       <Footer
-        logo={<img src="/logo.png" alt="Next Hire" className="h-12 w-auto object-contain" style={{ filter: "brightness(0) invert(1) drop-shadow(0 0 6px #8b5cf6)" }} />}
-        brandName="Next Hire"
+        logo={<img src="/logo.png" alt="TalentForge" className="h-12 w-auto object-contain" style={{ filter: "brightness(0) invert(1) drop-shadow(0 0 6px #8b5cf6)" }} />}
+        brandName="TalentForge"
         socialLinks={[
           { icon: <TwitterIcon className="h-5 w-5" />, href: "https://x.com/FarvejFaru", label: "Twitter" },
           { icon: <GithubIcon className="h-5 w-5" />, href: "https://github.com/farvejshaik", label: "GitHub" },
@@ -116,7 +116,7 @@ function AboutPage() {
           { href: "/terms", label: "Terms" },
           { href: "/contact", label: "Contact" },
         ]}
-        copyright={{ text: "© 2026 Next Hire", license: "All rights reserved" }}
+        copyright={{ text: "© 2026 TalentForge", license: "All rights reserved" }}
       />
     </div>
   );

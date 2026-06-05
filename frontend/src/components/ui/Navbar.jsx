@@ -55,13 +55,13 @@ const Navbar = () => {
             >
               <img
                 src="/logo.png"
-                alt="Next Hire"
+                alt="TalentForge"
                 className="h-12 w-auto object-contain logo-theme"
               />
             </motion.div>
             <div className="hidden flex-col sm:flex">
               <span className="bg-linear-to-r from-primary via-secondary to-accent bg-clip-text font-mono text-lg font-black tracking-wider text-transparent">
-                Next Hire
+                TalentForge
               </span>
             </div>
           </Link>

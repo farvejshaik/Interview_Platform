@@ -59,11 +59,11 @@ const Navbar1 = () => {
               whileHover={{ rotate: 10 }}
               transition={{ duration: 0.3 }}
             >
-              <img src="/logo.png" alt="Next Hire" className="h-full w-auto object-contain" style={{ filter: "brightness(0) invert(1) drop-shadow(0 0 6px #8b5cf6)" }} />
+              <img src="/logo.png" alt="TalentForge" className="h-full w-auto object-contain" style={{ filter: "brightness(0) invert(1) drop-shadow(0 0 6px #8b5cf6)" }} />
             </motion.div>
             <div className="hidden flex-col sm:flex">
               <span className="bg-linear-to-r from-primary via-secondary to-accent bg-clip-text font-mono text-lg font-black tracking-wider text-transparent">
-                Next Hire
+                TalentForge
               </span>
             </div>
           </Link>

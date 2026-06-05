@@ -34,7 +34,7 @@ function TermsPage() {
             <div className="mt-12 space-y-8 text-base-content/80 leading-relaxed">
               <section>
                 <h2 className="mb-4 text-xl font-semibold text-base-content">1. Acceptance of Terms</h2>
-                <p>By accessing and using Next Hire, you agree to be bound by these Terms of Service. If you do not agree with any part of these terms, you may not use our platform.</p>
+                <p>By accessing and using TalentForge, you agree to be bound by these Terms of Service. If you do not agree with any part of these terms, you may not use our platform.</p>
               </section>
 
               <section>
@@ -44,7 +44,7 @@ function TermsPage() {
 
               <section>
                 <h2 className="mb-4 text-xl font-semibold text-base-content">3. Acceptable Use</h2>
-                <p>You agree to use Next Hire only for lawful purposes and in accordance with these terms. You may not use the platform to: violate laws, infringe intellectual property rights, distribute malware, or engage in any activity that disrupts the platform's functionality.</p>
+                <p>You agree to use TalentForge only for lawful purposes and in accordance with these terms. You may not use the platform to: violate laws, infringe intellectual property rights, distribute malware, or engage in any activity that disrupts the platform's functionality.</p>
               </section>
 
               <section>
@@ -54,12 +54,12 @@ function TermsPage() {
 
               <section>
                 <h2 className="mb-4 text-xl font-semibold text-base-content">5. Intellectual Property</h2>
-                <p>The Next Hire platform, including its design, logo, problem library, and underlying technology, is protected by intellectual property laws. You may not copy, modify, or reverse engineer any part of the platform without our explicit consent.</p>
+                <p>The TalentForge platform, including its design, logo, problem library, and underlying technology, is protected by intellectual property laws. You may not copy, modify, or reverse engineer any part of the platform without our explicit consent.</p>
               </section>
 
               <section>
                 <h2 className="mb-4 text-xl font-semibold text-base-content">6. Limitation of Liability</h2>
-                <p>Next Hire is provided "as is" without warranties of any kind. We are not liable for any damages arising from your use of the platform, including but not limited to lost profits or data loss.</p>
+                <p>TalentForge is provided "as is" without warranties of any kind. We are not liable for any damages arising from your use of the platform, including but not limited to lost profits or data loss.</p>
               </section>
 
               <section>
@@ -77,8 +77,8 @@ function TermsPage() {
       </main>
 
       <Footer
-        logo={<img src="/logo.png" alt="Next Hire" className="h-12 w-auto object-contain" style={{ filter: "brightness(0) invert(1) drop-shadow(0 0 6px #8b5cf6)" }} />}
-        brandName="Next Hire"
+        logo={<img src="/logo.png" alt="TalentForge" className="h-12 w-auto object-contain" style={{ filter: "brightness(0) invert(1) drop-shadow(0 0 6px #8b5cf6)" }} />}
+        brandName="TalentForge"
         socialLinks={[
           { icon: <TwitterIcon className="h-5 w-5" />, href: "https://x.com/FarvejFaru", label: "Twitter" },
           { icon: <GithubIcon className="h-5 w-5" />, href: "https://github.com/farvejshaik", label: "GitHub" },
@@ -94,7 +94,7 @@ function TermsPage() {
           { href: "/terms", label: "Terms" },
           { href: "/contact", label: "Contact" },
         ]}
-        copyright={{ text: "© 2026 Next Hire", license: "All rights reserved" }}
+        copyright={{ text: "© 2026 TalentForge", license: "All rights reserved" }}
       />
     </div>
   );
