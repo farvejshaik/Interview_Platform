@@ -2,7 +2,7 @@ import axiosInstance from "./axios";
 
 export async function executeCode(language, code) {
   try {
-    const response = await axiosInstance.post("/execute", { language, code });
+    const response = await axiosInstance.post("/api/execute", { language, code });
     return response.data;
   } catch (error) {
     return {
