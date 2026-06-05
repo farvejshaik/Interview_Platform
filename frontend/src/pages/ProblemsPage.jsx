@@ -128,12 +128,18 @@ function ProblemsPage() {
   const activeCount =
     selectedDifficulties.length + selectedCategories.length + selectedCompanies.length;
 
+    
+
   return (
     <div className="min-h-screen bg-base-200">
       <Navbar />
       <div className="max-w-7xl mx-auto px-4 py-8 lg:py-12">
         <div className="mb-6 lg:mb-8">
-          <h1 className="text-4xl font-bold mb-2">Practice Problems</h1>
+          <h1 className="text-4xl font-bold mb-2">
+            <span className="bg-linear-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+              Practice Problems
+            </span>
+          </h1>
           <p className="text-base-content/70">
             Sharpen your coding skills with these curated problems
           </p>
@@ -268,9 +274,7 @@ function ProblemsPage() {
                   </button>
                 ))}
               </div>
-              <span className="text-xs text-base-content/40 whitespace-nowrap">
-                {filtered.length} / {problems.length}
-              </span>
+
             </div>
 
             {/* Cards */}
@@ -281,7 +285,7 @@ function ProblemsPage() {
                   <Link
                     key={problem.id}
                     to={`/problem/${problem.id}`}
-                    className="card bg-base-100 border border-base-300/50 shadow-sm hover:shadow-md hover:border-base-300 hover:scale-[1.01] transition-all rounded-2xl"
+                    className="card bg-base-100 border border-base-300/50 hover:border-base-300 hover:scale-[1.01] transition-all rounded-2xl"
                   >
                     <div className="card-body py-4 px-5">
                       <div className="flex items-center justify-between gap-4">

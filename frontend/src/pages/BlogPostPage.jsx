@@ -220,7 +220,7 @@ function TableOfContents({ headings, activeId, onHeadingClick, isOpen, onToggle 
       </button>
 
       <aside className={`${isOpen ? "fixed inset-0 z-40 bg-base-200/95 backdrop-blur-sm lg:relative lg:inset-auto lg:bg-transparent lg:backdrop-blur-none" : "hidden"} lg:block`}>
-        <div className={`${isOpen ? "fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 max-h-[70vh] overflow-y-auto rounded-2xl border border-base-content/10 bg-base-100 p-6 shadow-2xl" : ""} lg:w-auto lg:max-h-[calc(100vh-8rem)] lg:overflow-y-auto lg:border-0 lg:bg-transparent lg:p-0 lg:shadow-none`}>
+        <div className={`${isOpen ? "fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 max-h-[70vh] overflow-y-auto rounded-2xl border border-base-300/40 bg-base-100/80 backdrop-blur-sm p-6 shadow-2xl" : ""} lg:w-auto lg:max-h-[calc(100vh-8rem)] lg:overflow-y-auto lg:border-0 lg:bg-transparent lg:p-0 lg:shadow-none`}>
           <div className="flex items-center justify-between mb-4 lg:mb-5">
             <h3 className="flex items-center gap-2 text-sm font-semibold text-base-content uppercase tracking-wider">
               <BookOpenIcon className="h-4 w-4 text-primary" />
@@ -401,7 +401,7 @@ function BlogPostPage() {
                       </span>
                     </div>
 
-                    <div className="relative mt-8 mb-10 overflow-hidden rounded-2xl border border-base-content/10">
+                    <div className="relative mt-8 mb-10 overflow-hidden rounded-2xl border border-base-300/40">
                       <img
                         src={post.image}
                         alt={post.title}

@@ -5,7 +5,8 @@ export const protectRoute = [
   requireAuth(),
   async (req, res, next) => {
     try {
-      const clerkId = req.auth().userId;
+      const authResult = typeof req.auth === "function" ? req.auth() : req.auth;
+      const clerkId = authResult?.userId;
 
       if (!clerkId)
         return res

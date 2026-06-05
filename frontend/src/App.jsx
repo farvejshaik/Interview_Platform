@@ -15,7 +15,9 @@ import SignInPage from "./pages/SignInPage.jsx";
 import SignUpPage from "./pages/SignUpPage.jsx";
 import ProblemPage from "./pages/problemPage.jsx";
 import RoadmapDetailPage from "./pages/RoadmapDetailPage.jsx";
+import DashboardPage from "./pages/DashboardPage.jsx";
 import { Toaster } from "react-hot-toast";
+import SessionPage from "./pages/SessionPage";
 
 function App() {
   const { isSignedIn, isLoaded } = useUser();
@@ -45,6 +47,16 @@ function App() {
         <Route
           path="/problem/:id"
           element={isSignedIn ? <ProblemPage /> : <Navigate to={"/sign-in"} />}
+        />
+        <Route
+          path="/dashboard"
+          element={
+            isSignedIn ? <DashboardPage /> : <Navigate to={"/sign-in"} />
+          }
+        />
+        <Route
+          path="/session/:id"
+          element={isSignedIn ? <SessionPage /> : <Navigate to={"/"} />}
         />
       </Routes>
 

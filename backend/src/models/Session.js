@@ -21,6 +21,19 @@ const sessionSchema = new mongoose.Schema(
       ref: "User",
       default: null,
     },
+    joinRequests: [
+      {
+        user: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "User",
+        },
+        status: {
+          type: String,
+          enum: ["pending", "accepted", "rejected"],
+          default: "pending",
+        },
+      },
+    ],
     status: {
       type: String,
       enum: ["active", "completed"],

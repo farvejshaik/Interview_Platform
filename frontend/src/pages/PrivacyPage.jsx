@@ -32,42 +32,42 @@ function PrivacyPage() {
             <p className="mt-2 text-sm text-base-content/50">Last updated: June 1, 2026</p>
 
             <div className="mt-12 space-y-8 text-base-content/80 leading-relaxed">
-              <section>
+              <section className="rounded-2xl border border-base-300/40 bg-base-100/80 backdrop-blur-sm p-6">
                 <h2 className="mb-4 text-xl font-semibold text-base-content">1. Information We Collect</h2>
                 <p>We collect information you provide when creating an account, including your name, email address, and authentication data via Clerk. We also collect code submissions, interview session data, and usage analytics to improve our platform.</p>
               </section>
 
-              <section>
+              <section className="rounded-2xl border border-base-300/40 bg-base-100/80 backdrop-blur-sm p-6">
                 <h2 className="mb-4 text-xl font-semibold text-base-content">2. How We Use Your Information</h2>
                 <p>Your information is used to provide and maintain our coding interview platform, process your code submissions, personalize your experience, send service updates, and improve our problem library and features.</p>
               </section>
 
-              <section>
+              <section className="rounded-2xl border border-base-300/40 bg-base-100/80 backdrop-blur-sm p-6">
                 <h2 className="mb-4 text-xl font-semibold text-base-content">3. Data Sharing</h2>
                 <p>We do not sell your personal data. We may share anonymized aggregate data for analytics purposes. Your code submissions are stored securely and are not shared with third parties without your consent.</p>
               </section>
 
-              <section>
+              <section className="rounded-2xl border border-base-300/40 bg-base-100/80 backdrop-blur-sm p-6">
                 <h2 className="mb-4 text-xl font-semibold text-base-content">4. Data Security</h2>
                 <p>We implement industry-standard security measures including encryption at rest and in transit, regular security audits, and strict access controls to protect your data from unauthorized access.</p>
               </section>
 
-              <section>
+              <section className="rounded-2xl border border-base-300/40 bg-base-100/80 backdrop-blur-sm p-6">
                 <h2 className="mb-4 text-xl font-semibold text-base-content">5. Third-Party Services</h2>
                 <p>We use Clerk for authentication, Piston for code execution, and Vercel for hosting. Each service provider has its own privacy policy and data handling practices. We recommend reviewing their policies for complete information.</p>
               </section>
 
-              <section>
+              <section className="rounded-2xl border border-base-300/40 bg-base-100/80 backdrop-blur-sm p-6">
                 <h2 className="mb-4 text-xl font-semibold text-base-content">6. Cookies</h2>
                 <p>We use essential cookies for authentication and session management. Analytics cookies help us understand platform usage. You can control cookie preferences through your browser settings.</p>
               </section>
 
-              <section>
+              <section className="rounded-2xl border border-base-300/40 bg-base-100/80 backdrop-blur-sm p-6">
                 <h2 className="mb-4 text-xl font-semibold text-base-content">7. Your Rights</h2>
                 <p>You have the right to access, correct, or delete your personal data at any time. Contact us through our contact page to exercise these rights. We will respond to your request within 30 days.</p>
               </section>
 
-              <section>
+              <section className="rounded-2xl border border-base-300/40 bg-base-100/80 backdrop-blur-sm p-6">
                 <h2 className="mb-4 text-xl font-semibold text-base-content">8. Contact</h2>
                 <p>If you have questions about this privacy policy, please reach out through our contact page or email us at privacy@nexthire.dev.</p>
               </section>

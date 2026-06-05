@@ -95,10 +95,10 @@ function PricingPage() {
               {plans.map((plan, index) => (
                 <div
                   key={index}
-                  className={`relative flex flex-col rounded-2xl border p-8 transition-all duration-300 ${
+                    className={`relative flex flex-col rounded-2xl border p-8 transition-all duration-300 hover:-translate-y-0.5 ${
                     plan.highlighted
                       ? "border-primary/50 bg-primary/5 shadow-xl shadow-primary/10 scale-105"
-                      : "border-base-content/10 bg-base-100 hover:border-primary/30"
+                      : "border-base-300/40 bg-base-100/80 backdrop-blur-sm hover:border-primary/30"
                   }`}
                 >
                   {plan.highlighted && (

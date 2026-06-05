@@ -54,7 +54,7 @@ function ContactPage() {
 
               <div className="mt-16 grid gap-12 lg:grid-cols-2">
                 <div>
-                  <form onSubmit={handleSubmit} className="space-y-6">
+                  <form onSubmit={handleSubmit} className="space-y-6 rounded-2xl border border-base-300/40 bg-base-100/80 backdrop-blur-sm p-6">
                     <div className="grid gap-6 sm:grid-cols-2">
                       <div>
                         <label htmlFor="name" className="block text-sm font-medium text-base-content/80">
@@ -145,7 +145,7 @@ function ContactPage() {
                     </div>
                   </div>
 
-                  <div className="rounded-2xl border border-base-content/10 bg-base-100 p-6">
+                  <div className="rounded-2xl border border-base-300/40 bg-base-100/80 backdrop-blur-sm p-6">
                     <h2 className="text-lg font-semibold text-base-content">Frequently Asked</h2>
                     <div className="mt-4 space-y-4 text-sm text-base-content/70">
                       <div>
