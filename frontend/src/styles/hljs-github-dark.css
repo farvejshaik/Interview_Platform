@@ -1,0 +1,108 @@
+.hljs {
+  color: #e6edf3;
+  background: #0d1117;
+  display: block;
+  overflow-x: auto;
+  padding: 1rem;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  border-radius: 0;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-type,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-section {
+  color: #ff7b72;
+}
+
+.hljs-attr,
+.hljs-attribute,
+.hljs-built_in,
+.hljs-template-tag,
+.hljs-template-variable {
+  color: #79c0ff;
+}
+
+.hljs-string,
+.hljs-title,
+.hljs-title.function_,
+.hljs-title.class_,
+.hljs-title.class_.inherited__,
+.hljs-subst,
+.hljs-meta,
+.hljs-meta .hljs-keyword,
+.hljs-meta .hljs-string {
+  color: #a5d6ff;
+}
+
+.hljs-number,
+.hljs-literal,
+.hljs-variable,
+.hljs-variable.language_,
+.hljs-variable.constant_ {
+  color: #d2a8ff;
+}
+
+.hljs-comment,
+.hljs-quote,
+.hljs-deletion {
+  color: #8b949e;
+  font-style: italic;
+}
+
+.hljs-regexp,
+.hljs-symbol,
+.hljs-link {
+  color: #a5d6ff;
+}
+
+.hljs-addition {
+  color: #7ee787;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+.hljs-tag,
+.hljs-name {
+  color: #7ee787;
+}
+
+.hljs-selector-pseudo,
+.hljs-selector-attr {
+  color: #79c0ff;
+}
+
+.hljs-punctuation,
+.hljs-operator {
+  color: #ff7b72;
+}
+
+.hljs-deletion {
+  color: #ff7b72;
+}
+
+.hljs-params {
+  color: #ffa657;
+}
+
+.hljs-property {
+  color: #79c0ff;
+}
+
+.hljs-function {
+  color: #d2a8ff;
+}
+
+.hljs-class {
+  color: #ffa657;
+}

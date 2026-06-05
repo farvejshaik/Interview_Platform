@@ -2,6 +2,7 @@ import { ChevronLeftIcon, ChevronRightIcon, LightbulbIcon, FileTextIcon, StickyN
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { PROBLEM_HINTS, PROBLEM_SOLUTIONS } from "../../data/problems-meta";
+import CodeBlock from "./codeBlock";
 
 const TABS = [
   { id: "description", label: "Description", icon: FileTextIcon },
@@ -16,7 +17,7 @@ function ProblemDescription({ problem, currentProblemId, onProblemChange, allPro
   const currentIndex = allProblems.findIndex((p) => p.id === currentProblemId);
   const hints = PROBLEM_HINTS[currentProblemId];
   const solution = PROBLEM_SOLUTIONS[currentProblemId];
-  const showSolution = failedCount >= 5;
+  const showSolution = failedCount >= 3;
 
   useEffect(() => {
     const saved = localStorage.getItem(`notes-${currentProblemId}`);
@@ -29,9 +30,7 @@ function ProblemDescription({ problem, currentProblemId, onProblemChange, allPro
     localStorage.setItem(`notes-${currentProblemId}`, notes);
   }, [notes, currentProblemId]);
 
-  const tabs = showSolution
-    ? [...TABS, { id: "solution", label: "Solution", icon: CodeIcon }]
-    : TABS;
+  const tabs = [...TABS, { id: "solution", label: "Solution", icon: CodeIcon }];
 
   return (
     <div className="h-full bg-base-100 flex flex-col overflow-hidden">
@@ -112,13 +111,13 @@ function ProblemDescription({ problem, currentProblemId, onProblemChange, allPro
                   {example.input && (
                     <div>
                       <div className="text-xs text-base-content/50 mb-1">Input:</div>
-                      <pre className="bg-base-300 text-xs p-2 rounded overflow-x-auto">{example.input}</pre>
+                      <CodeBlock code={example.input} language="javascript" />
                     </div>
                   )}
                   {example.output && (
                     <div>
                       <div className="text-xs text-base-content/50 mb-1">Output:</div>
-                      <pre className="bg-base-300 text-xs p-2 rounded overflow-x-auto">{example.output}</pre>
+                      <CodeBlock code={example.output} language="javascript" />
                     </div>
                   )}
                   {example.explanation && (
@@ -182,23 +181,24 @@ function ProblemDescription({ problem, currentProblemId, onProblemChange, allPro
 
         {activeTab === "solution" && solution && (
           <div className="space-y-3">
-            {!showSolution && (
-              <div className="bg-base-200 rounded-lg p-3 text-sm text-base-content/60">
-                <p>You have {5 - failedCount} more failed attempt{failedCount !== 4 ? "s" : ""} before the solution is revealed.</p>
-              </div>
-            )}
-            {showSolution && (
+            {showSolution ? (
               <>
                 <div className="flex items-center gap-2 text-xs text-base-content/50">
                   <CodeIcon className="size-3.5" />
                   Reference solution (JavaScript)
                 </div>
-                <div className="relative">
-                  <pre className="bg-[#1e1e2e] text-sm leading-relaxed rounded-xl p-4 overflow-x-auto">
-                    <code className="text-gray-200">{solution}</code>
-                  </pre>
-                </div>
+                <CodeBlock code={solution} language="javascript" showLineNumbers />
               </>
+            ) : failedCount === 0 ? (
+              <div className="bg-base-200 rounded-lg p-4 text-sm text-base-content/50 text-center">
+                <CodeIcon className="size-8 mx-auto mb-2 opacity-40" />
+                <p>Solve the problem to unlock the solution.</p>
+                <p className="text-xs mt-1">The solution will be revealed after 3 failed attempts.</p>
+              </div>
+            ) : (
+              <div className="bg-base-200 rounded-lg p-3 text-sm text-base-content/60">
+                <p>You have {3 - failedCount} more failed attempt{failedCount !== 2 ? "s" : ""} before the solution is revealed.</p>
+              </div>
             )}
           </div>
         )}

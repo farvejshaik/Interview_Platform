@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useMemo } from "react";
 import hljs from "highlight.js";
-import "highlight.js/styles/atom-one-dark.css";
+import "../styles/hljs-github-dark.css";
 import { useParams, Link } from "react-router";
 import { motion, AnimatePresence } from "motion/react";
 import { Navbar } from "../components/ui/Navbar";
@@ -293,12 +293,15 @@ function BlogPostPage() {
   }, [headings]);
 
   useEffect(() => {
-    const blocks = document.querySelectorAll(".prose-content pre code");
+    if (!contentRef.current) return;
+    const blocks = contentRef.current.querySelectorAll("pre code");
     for (const block of blocks) {
       hljs.highlightElement(block);
     }
+  });
 
-    const container = document.querySelector(".prose-content");
+  useEffect(() => {
+    const container = contentRef.current;
     if (!container) return;
     const handleCopy = (e) => {
       const btn = e.target.closest(".copy-btn");

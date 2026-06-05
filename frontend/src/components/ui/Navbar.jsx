@@ -1,10 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Menu, X, Sun, Moon, LogOutIcon, Code2Icon } from "lucide-react";
 import { Link } from "react-router";
 import { useUser, useClerk } from "@clerk/clerk-react";
+import { useTheme } from "../../lib/useTheme";
 
 function ThemeToggle({ theme, toggleTheme }) {
   return (
@@ -24,28 +25,9 @@ function ThemeToggle({ theme, toggleTheme }) {
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [theme, setTheme] = useState(() => {
-    if (typeof window !== "undefined") {
-      return (
-        document.documentElement.getAttribute("data-theme") ||
-        "talentforge-dark"
-      );
-    }
-    return "talentforge-dark";
-  });
+  const { theme, toggleTheme } = useTheme();
   const { isSignedIn } = useUser();
   const { signOut } = useClerk();
-
-  useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
-    localStorage.setItem("theme", theme);
-  }, [theme]);
-
-  const toggleTheme = () => {
-    setTheme((prev) =>
-      prev === "talentforge-light" ? "talentforge-dark" : "talentforge-light",
-    );
-  };
 
   const toggleMenu = () => setIsOpen(!isOpen);
 

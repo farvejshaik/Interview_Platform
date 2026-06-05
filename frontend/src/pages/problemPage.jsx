@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router";
 import { PROBLEMS } from "../data/problems";
-import Navbar from "../components/ui/Navbar";
-
 import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
 import ProblemDescription from "../components/ui/problemDescription";
 import OutputPanel from "../components/ui/outputPanel";
@@ -86,7 +84,9 @@ function ProblemWorkspace({ problem, problemId, onProblemChange, allProblems }) 
         toast.success("All tests passed! Great job!");
       } else {
         setOutput({ ...result, expected: expectedOutput });
-        setFailedCount((prev) => prev + 1);
+        if (code !== problem.starterCode[selectedLanguage]) {
+          setFailedCount((prev) => prev + 1);
+        }
         toast("Output does not match expected");
       }
     } else {
@@ -111,7 +111,7 @@ function ProblemWorkspace({ problem, problemId, onProblemChange, allProblems }) 
 
       <Panel defaultSize={60} minSize={30} className="overflow-hidden">
         {showOutput ? (
-    <PanelGroup direction="horizontal">
+    <PanelGroup direction="vertical">
             <Panel defaultSize={70} minSize={30} className="overflow-hidden">
               <CodeEditorPanel
                 selectedLanguage={selectedLanguage}
@@ -123,7 +123,7 @@ function ProblemWorkspace({ problem, problemId, onProblemChange, allProblems }) 
               />
             </Panel>
 
-      <PanelResizeHandle className="w-2 bg-base-300 hover:bg-primary transition-colors cursor-col-resize" />
+      <PanelResizeHandle className="h-2 bg-base-300 hover:bg-primary transition-colors cursor-row-resize" />
 
             <Panel defaultSize={30} minSize={15} className="overflow-hidden">
               <OutputPanel output={output} onClose={() => setShowOutput(false)} />
@@ -155,8 +155,6 @@ function ProblemPage() {
 
   return (
     <div className="h-screen bg-base-200 flex flex-col">
-      <Navbar />
-
       <div className="flex-1" key={problemId}>
         <ProblemWorkspace
           problem={currentProblem}

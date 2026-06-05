@@ -91,7 +91,7 @@ export function TestimonialsSection() {
         <div className="section-header">
           <h2 className="text-4xl font-bold text-base-content sm:text-5xl">
             Loved by{" "}
-            <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text font-mono text-transparent">
+            <span className="bg-linear-to-r from-primary via-secondary to-accent bg-clip-text font-mono text-transparent">
               Thousands
             </span>
           </h2>
