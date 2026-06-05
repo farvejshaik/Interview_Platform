@@ -1,6 +1,7 @@
 import { useUser } from "@clerk/clerk-react";
 import { Navigate, Route, Routes } from "react-router";
 import ProblemsPage from "./pages/ProblemsPage.jsx";
+import RoadmapsPage from "./pages/RoadmapsPage.jsx";
 import HomePage from "./pages/HomePage.jsx";
 import AboutPage from "./pages/AboutPage.jsx";
 import FeaturesPage from "./pages/FeaturesPage.jsx";
@@ -13,6 +14,7 @@ import ContactPage from "./pages/ContactPage.jsx";
 import SignInPage from "./pages/SignInPage.jsx";
 import SignUpPage from "./pages/SignUpPage.jsx";
 import ProblemPage from "./pages/problemPage.jsx";
+import RoadmapDetailPage from "./pages/RoadmapDetailPage.jsx";
 import { Toaster } from "react-hot-toast";
 
 function App() {
@@ -31,6 +33,8 @@ function App() {
         <Route path="/blog/:slug" element={<BlogPostPage />} />
         <Route path="/privacy" element={<PrivacyPage />} />
         <Route path="/terms" element={<TermsPage />} />
+        <Route path="/roadmaps" element={<RoadmapsPage />} />
+        <Route path="/roadmaps/:slug" element={<RoadmapDetailPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/sign-in/*" element={<SignInPage />} />
         <Route path="/sign-up/*" element={<SignUpPage />} />

@@ -89,9 +89,7 @@ function ProblemDescription({ problem, currentProblemId, onProblemChange, allPro
             >
               <Icon className="size-3.5" />
               {tab.label}
-              {tab.id === "solution" && (
-                <span className="badge badge-xs badge-secondary ml-1">New</span>
-              )}
+
             </button>
           );
         })}

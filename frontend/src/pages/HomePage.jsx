@@ -8,6 +8,7 @@ import { Navbar } from "../components/ui/Navbar";
 import HeroSection from "../components/ui/hero-section";
 import { BentoGrid } from "../components/ui/bento-grid";
 import { TestimonialsSection } from "../components/ui/testimonials";
+import { CompaniesMarquee } from "../components/ui/companies-marquee";
 import { Footer } from "../components/ui/footer";
 
 function TwitterIcon({ className }) {
@@ -66,8 +67,25 @@ function HomePage() {
       ];
 
   return (
-    <div className="min-h-screen bg-base-200 text-base-content">
-      <Navbar />
+    <div className="min-h-screen bg-base-200 text-base-content relative">
+      {/* Purple glow - light mode only */}
+      <div
+        className="absolute inset-0 z-0 dark:hidden"
+        style={{
+          background: "#ffffff",
+          backgroundImage: `
+            radial-gradient(
+              circle at top left,
+              rgba(173, 109, 244, 0.5),
+              transparent 70%
+            )
+          `,
+          filter: "blur(80px)",
+          backgroundRepeat: "no-repeat",
+        }}
+      />
+      <div className="relative z-10">
+        <Navbar />
 
       <main>
         <HeroSection
@@ -101,6 +119,8 @@ function HomePage() {
           ]}
           image="/hero.png"
         />
+
+        <CompaniesMarquee />
 
         <section className="section-y">
           <div className="page-container">
@@ -142,6 +162,7 @@ function HomePage() {
           license: "All rights reserved",
         }}
       />
+      </div>
     </div>
   );
 }
