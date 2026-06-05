@@ -2,31 +2,54 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Menu, X, Sun, Moon, LogOutIcon, Code2Icon } from "lucide-react";
-import { Link } from "react-router";
-import { useUser, useClerk } from "@clerk/clerk-react";
+import { Menu, X, Sun, Moon, Code2Icon, LayoutDashboardIcon, MapIcon, FileTextIcon } from "lucide-react";
+import { Link, useLocation } from "react-router";
+import { useUser, UserButton } from "@clerk/clerk-react";
 import { useTheme } from "../../lib/useTheme";
-import {
-  NavigationMenu,
-  NavigationMenuList,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  navigationMenuTriggerStyle,
-} from "./navigation-menu";
+
+const navLinks = [
+  { to: "/roadmaps", label: "Roadmaps", icon: MapIcon },
+  { to: "/blog", label: "Blog", icon: FileTextIcon },
+];
+
+const authLinks = [
+  { to: "/dashboard", label: "Dashboard", icon: LayoutDashboardIcon },
+  { to: "/problems", label: "Problems", icon: Code2Icon },
+];
 
 function ThemeToggle({ theme, toggleTheme }) {
   return (
     <button
       onClick={toggleTheme}
-      className="flex h-10 w-10 items-center justify-center rounded-full border border-base-content/30 bg-base-100/30 text-base-content hover:bg-base-200 transition-colors"
+      className="flex h-9 w-9 items-center justify-center rounded-lg border border-base-content/20 bg-base-100/50 text-base-content/60 hover:bg-base-200 hover:text-base-content transition-all"
       aria-label="Toggle Theme"
     >
       {theme === "talentforge-light" ? (
-        <Moon className="h-5 w-5 text-primary" />
+        <Moon className="h-4 w-4" />
       ) : (
-        <Sun className="h-5 w-5 text-warning" />
+        <Sun className="h-4 w-4 text-warning" />
       )}
     </button>
+  );
+}
+
+function NavLink({ to, label, icon: Icon, onClick }) {
+  const { pathname } = useLocation();
+  const isActive = pathname === to || pathname.startsWith(to + "/");
+
+  return (
+    <Link
+      to={to}
+      onClick={onClick}
+      className={`flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-lg transition-all ${
+        isActive
+          ? "text-primary bg-primary/10"
+          : "text-base-content/60 hover:text-base-content hover:bg-base-200/50"
+      }`}
+    >
+      <Icon className="size-4" />
+      {label}
+    </Link>
   );
 }
 
@@ -34,184 +57,96 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
   const { isSignedIn } = useUser();
-  const { signOut } = useClerk();
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
-    <header className="w-full">
-      <div className="page-container py-4 md:py-6">
-        <div className="relative z-10 flex w-full items-center justify-between rounded-full border border-base-content/30 bg-base-100/70 px-6 py-3 shadow-lg backdrop-blur-sm">
-          <Link
-            to="/"
-            className="flex items-center gap-3 transition-transform duration-200 hover:scale-105"
-          >
-            <motion.div
-              className="h-12 w-auto"
-              initial={{ scale: 0.8 }}
-              animate={{ scale: 1 }}
-              whileHover={{ rotate: 10 }}
-              transition={{ duration: 0.3 }}
-            >
+    <header className="w-full sticky top-0 z-50">
+      <div className="border-b border-base-300/50 bg-base-100/80 backdrop-blur-md">
+        <div className="page-container">
+          <div className="flex h-16 items-center justify-between">
+            <Link to="/" className="flex items-center gap-2.5 shrink-0">
               <img
                 src="/logo.png"
                 alt="TalentForge"
-                className="h-12 w-auto object-contain logo-theme"
+                className="h-8 w-auto object-contain logo-theme"
               />
-            </motion.div>
-            <div className="hidden flex-col sm:flex">
-              <span className="bg-linear-to-r from-primary via-secondary to-accent bg-clip-text font-mono text-lg font-black tracking-wider text-transparent">
+              <span className="hidden sm:inline bg-linear-to-r from-primary to-accent bg-clip-text font-mono text-base font-bold tracking-tight text-transparent">
                 TalentForge
               </span>
+            </Link>
+
+            <div className="hidden md:flex items-center gap-1">
+              {navLinks.map((link) => (
+                <NavLink key={link.to} {...link} />
+              ))}
+              {isSignedIn && authLinks.map((link) => (
+                <NavLink key={link.to} {...link} />
+              ))}
             </div>
-          </Link>
 
-          <div className="hidden md:flex items-center gap-4">
-            <NavigationMenu viewport={false}>
-              <NavigationMenuList>
-                <NavigationMenuItem>
-                  <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-                    <Link to="/roadmaps" className="text-base-content/70 hover:text-base-content">
-                      Roadmaps
-                    </Link>
-                  </NavigationMenuLink>
-                </NavigationMenuItem>
-                <NavigationMenuItem>
-                  <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-                    <Link to="/blog" className="text-base-content/70 hover:text-base-content">
-                      Blog
-                    </Link>
-                  </NavigationMenuLink>
-                </NavigationMenuItem>
-                {isSignedIn && (
-                  <NavigationMenuItem>
-                    <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-                      <Link
-                        to="/problems"
-                        className="flex items-center gap-2 text-base-content/70 hover:text-base-content"
-                      >
-                        <Code2Icon className="size-4" />
-                        Problems
-                      </Link>
-                    </NavigationMenuLink>
-                  </NavigationMenuItem>
-                )}
-              </NavigationMenuList>
-            </NavigationMenu>
-
-            <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
-
-            {isSignedIn ? (
-              <button
-                onClick={() => signOut()}
-                className="flex items-center gap-2 rounded-full border border-base-content/20 px-4 py-2 text-sm font-medium text-base-content/70 hover:text-base-content hover:bg-base-200 transition-colors"
-              >
-                <LogOutIcon className="size-4" />
-                Sign Out
-              </button>
-            ) : (
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.3, delay: 0.2 }}
-                whileHover={{ scale: 1.05 }}
-              >
+            <div className="hidden md:flex items-center gap-3">
+              <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
+              {isSignedIn ? (
+                <div className="flex items-center">
+                  <UserButton />
+                </div>
+              ) : (
                 <Link
                   to="/sign-in"
-                  className="inline-flex items-center justify-center rounded-full bg-primary px-5 py-2 text-sm font-medium text-primary-content transition-colors hover:bg-primary/90"
+                  className="inline-flex items-center justify-center rounded-lg bg-primary px-4 py-1.5 text-sm font-medium text-primary-content hover:bg-primary/90 transition-all"
                 >
-                  Get Started
+                  Sign In
                 </Link>
-              </motion.div>
-            )}
-          </div>
+              )}
+            </div>
 
-          <motion.button
-            className="flex items-center md:hidden"
-            onClick={toggleMenu}
-            whileTap={{ scale: 0.9 }}
-            aria-label="Open menu"
-          >
-            <Menu className="h-6 w-6 text-base-content" />
-          </motion.button>
+            <button
+              className="flex items-center md:hidden p-2 -mr-2 rounded-lg hover:bg-base-200 transition-colors"
+              onClick={toggleMenu}
+              aria-label="Open menu"
+            >
+              {isOpen ? <X className="h-5 w-5 text-base-content" /> : <Menu className="h-5 w-5 text-base-content" />}
+            </button>
+          </div>
         </div>
       </div>
 
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="fixed inset-0 z-50 bg-base-100 px-6 pt-24 md:hidden"
-            initial={{ opacity: 0, x: "100%" }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: "100%" }}
-            transition={{ type: "spring", damping: 25, stiffness: 300 }}
+            className="border-b border-base-300/50 bg-base-100 md:hidden"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.2, ease: "easeInOut" }}
           >
-            <motion.button
-              className="absolute top-6 right-6 p-2"
-              onClick={toggleMenu}
-              whileTap={{ scale: 0.9 }}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.2 }}
-              aria-label="Close menu"
-            >
-              <X className="h-6 w-6 text-base-content" />
-            </motion.button>
-            <div className="flex flex-col space-y-6">
-              <div className="flex items-center justify-between border-b border-base-content/30 pb-4">
-                <span className="text-base font-semibold text-base-content">
-                  Theme
-                </span>
+            <div className="page-container py-4 space-y-1">
+              {navLinks.map((link) => (
+                <NavLink key={link.to} {...link} onClick={toggleMenu} />
+              ))}
+              {isSignedIn && authLinks.map((link) => (
+                <NavLink key={link.to} {...link} onClick={toggleMenu} />
+              ))}
+              <div className="flex items-center justify-between pt-3 mt-3 border-t border-base-300/50">
+                <span className="text-sm text-base-content/50">Theme</span>
                 <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
               </div>
-              <Link
-                to="/roadmaps"
-                className="flex items-center gap-3 rounded-lg border border-base-content/10 px-4 py-3 text-base font-medium text-base-content/70 hover:text-base-content hover:bg-base-200 transition-colors"
-                onClick={toggleMenu}
-              >
-                Roadmaps
-              </Link>
-              <Link
-                to="/blog"
-                className="flex items-center gap-3 rounded-lg border border-base-content/10 px-4 py-3 text-base font-medium text-base-content/70 hover:text-base-content hover:bg-base-200 transition-colors"
-                onClick={toggleMenu}
-              >
-                Blog
-              </Link>
-              {isSignedIn ? (
-                <>
-                  <Link
-                    to="/problems"
-                    className="flex items-center gap-3 rounded-lg border border-base-content/10 px-4 py-3 text-base font-medium text-base-content/70 hover:text-base-content hover:bg-base-200 transition-colors"
-                    onClick={toggleMenu}
-                  >
-                    <Code2Icon className="size-5" />
-                    Problems
-                  </Link>
-                  <button
-                    onClick={() => { signOut(); toggleMenu(); }}
-                    className="flex items-center gap-3 rounded-lg border border-base-content/10 px-4 py-3 text-base font-medium text-base-content/70 hover:text-base-content hover:bg-base-200 transition-colors w-full"
-                  >
-                    <LogOutIcon className="size-5" />
-                    Sign Out
-                  </button>
-                </>
-              ) : (
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3 }}
-                  exit={{ opacity: 0, y: 20 }}
-                >
+              <div className="pt-2">
+                {isSignedIn ? (
+                  <div className="flex items-center justify-center py-2">
+                    <UserButton />
+                  </div>
+                ) : (
                   <Link
                     to="/sign-in"
-                    className="inline-flex w-full items-center justify-center rounded-full bg-primary px-5 py-3 text-base font-medium text-primary-content transition-colors hover:bg-primary/90"
+                    className="flex w-full items-center justify-center rounded-lg bg-primary px-4 py-2.5 text-sm font-medium text-primary-content hover:bg-primary/90 transition-all"
                     onClick={toggleMenu}
                   >
-                    Get Started
+                    Sign In
                   </Link>
-                </motion.div>
-              )}
+                )}
+              </div>
             </div>
           </motion.div>
         )}

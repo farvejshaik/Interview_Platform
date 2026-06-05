@@ -96,28 +96,33 @@ function BlogPage() {
                 >
                   <Link
                     to={`/blog/${post.slug}`}
-                    className="group block h-full rounded-2xl border border-base-content/10 bg-base-100 p-6 transition-all duration-300 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5"
+                    className="group relative h-full rounded-xl border border-base-300/50 bg-base-100/80 backdrop-blur-sm p-5 transition-all duration-200 hover:shadow-[0_2px_12px_rgba(0,0,0,0.03)] dark:hover:shadow-[0_2px_12px_rgba(255,255,255,0.03)] hover:-translate-y-0.5 will-change-transform flex flex-col"
                   >
-                    <span className="inline-block rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
-                      {post.category}
-                    </span>
-                    <h2 className="mt-4 text-lg font-semibold text-base-content group-hover:text-primary transition-colors">
-                      {post.title}
-                    </h2>
-                    <p className="mt-2 text-sm text-base-content/70 leading-relaxed flex-1">
-                      {post.excerpt}
-                    </p>
-                    <div className="mt-4 flex items-center justify-between border-t border-base-content/10 pt-4 text-xs text-base-content/50">
-                      <span className="flex items-center gap-1">
-                        <ClockIcon className="h-3 w-3" />
-                        {post.readTime}
-                      </span>
-                      <span className="flex items-center gap-1">
-                        {post.date}
-                      </span>
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.02)_1px,transparent_1px)] dark:bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[length:4px_4px]" />
                     </div>
-                    <div className="mt-3 flex items-center gap-1 text-sm font-medium text-primary opacity-0 group-hover:opacity-100 transition-opacity">
-                      Read more <ArrowRightIcon className="h-4 w-4" />
+                    <div className="relative space-y-3">
+                      <div className="flex items-center justify-between">
+                        <span className="text-[11px] font-medium px-2 py-1 rounded bg-black/5 dark:bg-white/10 text-base-content/50">
+                          {post.category}
+                        </span>
+                      </div>
+                      <h2 className="text-sm font-semibold text-base-content tracking-tight">
+                        {post.title}
+                      </h2>
+                      <p className="text-xs text-base-content/60 leading-relaxed">
+                        {post.excerpt}
+                      </p>
+                      <div className="flex items-center justify-between pt-3 border-t border-base-300/30 text-[11px] text-base-content/40">
+                        <span className="flex items-center gap-1">
+                          <ClockIcon className="h-3 w-3" />
+                          {post.readTime}
+                        </span>
+                        <span>{post.date}</span>
+                      </div>
+                      <div className="flex items-center gap-1 text-[11px] font-medium text-base-content/40 opacity-0 group-hover:opacity-100 transition-opacity">
+                        Read more <ArrowRightIcon className="h-3 w-3" />
+                      </div>
                     </div>
                   </Link>
                 </motion.article>

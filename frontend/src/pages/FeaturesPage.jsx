@@ -76,7 +76,7 @@ function FeaturesPage() {
               {features.map((feature, index) => (
                 <div
                   key={index}
-                  className="group rounded-2xl border border-base-content/10 bg-base-100 p-8 transition-all duration-300 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5"
+                  className="group rounded-2xl border border-base-300/40 bg-base-100/80 backdrop-blur-sm p-8 transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/30"
                 >
                   <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-base-200 group-hover:scale-110 transition-transform duration-300">
                     {feature.icon}

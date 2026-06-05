@@ -6,7 +6,7 @@ import {
 import { useUser } from "@clerk/clerk-react";
 import { Navbar } from "../components/ui/Navbar";
 import HeroSection from "../components/ui/hero-section";
-import { BentoGrid } from "../components/ui/bento-grid";
+import { CyberneticBentoGrid } from "../components/ui/cybernetic-bento-grid";
 import { TestimonialsSection } from "../components/ui/testimonials";
 import { CompaniesMarquee } from "../components/ui/companies-marquee";
 import { Footer } from "../components/ui/footer";
@@ -44,12 +44,12 @@ function HomePage() {
     ? [
         {
           text: "Start Interview",
-          to: "/problems",
+          to: "/dashboard",
           variant: "default",
         },
         {
           text: "Get Started",
-          to: "/problems",
+          to: "/dashboard",
           variant: "outline",
         },
       ]
@@ -68,20 +68,11 @@ function HomePage() {
 
   return (
     <div className="min-h-screen bg-base-200 text-base-content relative">
-      {/* Purple glow - light mode only */}
+      {/* Radial gradient background - light mode only */}
       <div
         className="absolute inset-0 z-0 dark:hidden"
         style={{
-          background: "#ffffff",
-          backgroundImage: `
-            radial-gradient(
-              circle at top left,
-              rgba(173, 109, 244, 0.5),
-              transparent 70%
-            )
-          `,
-          filter: "blur(80px)",
-          backgroundRepeat: "no-repeat",
+          background: "radial-gradient(125% 125% at 50% 0%, #ffffff 0%, #f5f3ff 25%, #ddd6fe 50%, #7c3aed 100%)",
         }}
       />
       <div className="relative z-10">
@@ -124,7 +115,7 @@ function HomePage() {
 
         <section className="section-y">
           <div className="page-container">
-            <BentoGrid />
+            <CyberneticBentoGrid />
           </div>
         </section>
 

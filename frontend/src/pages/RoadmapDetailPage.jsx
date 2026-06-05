@@ -43,7 +43,7 @@ function RoadmapDetailPage() {
   if (!roadmap) {
     return (
       <div className="min-h-screen bg-base-200 text-base-content flex items-center justify-center px-4">
-        <div className="text-center max-w-md">
+        <div className="text-center max-w-md rounded-2xl border border-base-300/40 bg-base-100/80 backdrop-blur-sm p-8">
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-base-300/50 mb-6">
             <svg className="w-8 h-8 text-base-content/40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
               <circle cx="12" cy="12" r="9" />
@@ -72,7 +72,7 @@ function RoadmapDetailPage() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="mx-auto max-w-lg text-center"
+              className="mx-auto max-w-lg text-center rounded-2xl border border-base-300/40 bg-base-100/80 backdrop-blur-sm p-8"
             >
               <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-6">
                 <svg className="w-8 h-8 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">

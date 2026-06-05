@@ -72,7 +72,7 @@ function AboutPage() {
                 {values.map((value, index) => (
                   <div
                     key={index}
-                    className="rounded-2xl border border-base-content/10 bg-base-100 p-8 transition-all duration-300 hover:border-primary/30"
+                    className="rounded-2xl border border-base-300/40 bg-base-100/80 backdrop-blur-sm p-8 transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/30"
                   >
                     <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-base-200">
                       {value.icon}
@@ -88,7 +88,7 @@ function AboutPage() {
 
         <section className="section-y pt-0">
           <div className="page-container">
-            <div className="mx-auto max-w-3xl rounded-2xl border border-base-content/10 bg-base-100 p-8 text-center">
+            <div className="mx-auto max-w-3xl rounded-2xl border border-base-300/40 bg-base-100/80 backdrop-blur-sm p-8 text-center">
               <h2 className="text-2xl font-bold text-base-content">Our Mission</h2>
               <p className="mt-4 text-base text-base-content/70 leading-relaxed">
                 To make technical interview preparation accessible, collaborative, and effective for every developer worldwide. We believe that with the right tools and practice, anyone can ace their dream job interview.

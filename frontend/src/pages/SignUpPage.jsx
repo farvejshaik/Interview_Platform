@@ -24,7 +24,7 @@ export default function SignUpPage() {
           afterSignUpUrl="/problems"
           appearance={{
             elements: {
-              card: "shadow-2xl border border-base-content/10 rounded-2xl bg-base-100/90 backdrop-blur-md",
+              card: "shadow-2xl border border-base-300/40 rounded-2xl bg-base-100/90 backdrop-blur-md",
               headerTitle: "text-base-content font-bold",
               headerSubtitle: "text-base-content/70",
               socialButtonsBlockButton: "border border-base-content/20 hover:bg-base-200 text-base-content",

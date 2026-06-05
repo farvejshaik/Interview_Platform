@@ -32,42 +32,42 @@ function TermsPage() {
             <p className="mt-2 text-sm text-base-content/50">Last updated: June 1, 2026</p>
 
             <div className="mt-12 space-y-8 text-base-content/80 leading-relaxed">
-              <section>
+              <section className="rounded-2xl border border-base-300/40 bg-base-100/80 backdrop-blur-sm p-6">
                 <h2 className="mb-4 text-xl font-semibold text-base-content">1. Acceptance of Terms</h2>
                 <p>By accessing and using TalentForge, you agree to be bound by these Terms of Service. If you do not agree with any part of these terms, you may not use our platform.</p>
               </section>
 
-              <section>
+              <section className="rounded-2xl border border-base-300/40 bg-base-100/80 backdrop-blur-sm p-6">
                 <h2 className="mb-4 text-xl font-semibold text-base-content">2. User Accounts</h2>
                 <p>You are responsible for maintaining the confidentiality of your account credentials. You must be at least 13 years old to use this platform. You agree to provide accurate and complete information when creating your account.</p>
               </section>
 
-              <section>
+              <section className="rounded-2xl border border-base-300/40 bg-base-100/80 backdrop-blur-sm p-6">
                 <h2 className="mb-4 text-xl font-semibold text-base-content">3. Acceptable Use</h2>
                 <p>You agree to use TalentForge only for lawful purposes and in accordance with these terms. You may not use the platform to: violate laws, infringe intellectual property rights, distribute malware, or engage in any activity that disrupts the platform's functionality.</p>
               </section>
 
-              <section>
+              <section className="rounded-2xl border border-base-300/40 bg-base-100/80 backdrop-blur-sm p-6">
                 <h2 className="mb-4 text-xl font-semibold text-base-content">4. Code Submissions</h2>
                 <p>You retain all rights to the code you submit on our platform. By submitting code, you grant us a non-exclusive license to execute, analyze, and store your code for the purpose of providing our services.</p>
               </section>
 
-              <section>
+              <section className="rounded-2xl border border-base-300/40 bg-base-100/80 backdrop-blur-sm p-6">
                 <h2 className="mb-4 text-xl font-semibold text-base-content">5. Intellectual Property</h2>
                 <p>The TalentForge platform, including its design, logo, problem library, and underlying technology, is protected by intellectual property laws. You may not copy, modify, or reverse engineer any part of the platform without our explicit consent.</p>
               </section>
 
-              <section>
+              <section className="rounded-2xl border border-base-300/40 bg-base-100/80 backdrop-blur-sm p-6">
                 <h2 className="mb-4 text-xl font-semibold text-base-content">6. Limitation of Liability</h2>
                 <p>TalentForge is provided "as is" without warranties of any kind. We are not liable for any damages arising from your use of the platform, including but not limited to lost profits or data loss.</p>
               </section>
 
-              <section>
+              <section className="rounded-2xl border border-base-300/40 bg-base-100/80 backdrop-blur-sm p-6">
                 <h2 className="mb-4 text-xl font-semibold text-base-content">7. Termination</h2>
                 <p>We reserve the right to suspend or terminate your account at any time for violations of these terms, with or without notice. You may terminate your account at any time by contacting us.</p>
               </section>
 
-              <section>
+              <section className="rounded-2xl border border-base-300/40 bg-base-100/80 backdrop-blur-sm p-6">
                 <h2 className="mb-4 text-xl font-semibold text-base-content">8. Changes to Terms</h2>
                 <p>We may modify these terms at any time. We will notify users of material changes via email or through the platform. Continued use of the platform after changes constitutes acceptance of the new terms.</p>
               </section>
