@@ -49,9 +49,14 @@ export async function createSession(req, res) {
   }
 }
 
-export async function getActiveSessions(_, res) {
+export async function getActiveSessions(req, res) {
   try {
-    const sessions = await Session.find({ status: "active" })
+    const userId = req.user._id;
+
+    const sessions = await Session.find({
+      status: "active",
+      $or: [{ host: userId }, { participant: userId }],
+    })
       .populate("host", "name profileImage email clerkId")
       .populate("participant", "name profileImage email clerkId")
       .sort({ createdAt: -1 })
