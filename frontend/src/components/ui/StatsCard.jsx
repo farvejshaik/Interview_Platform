@@ -36,8 +36,10 @@ function StatsCards({ activeSessionsCount, recentSessionsCount }) {
               </span>
             </div>
             <div>
-              <div className="text-xl sm:text-2xl font-semibold tracking-tight text-base-content">
-                {card.value}
+              <div className="text-xl sm:text-2xl font-semibold tracking-tight">
+                <span className="bg-linear-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+                  {card.value}
+                </span>
               </div>
               <p className="text-xs text-base-content/50 mt-0.5">{card.label}</p>
             </div>

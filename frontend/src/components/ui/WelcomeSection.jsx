@@ -14,8 +14,10 @@ function WelcomeSection({ onCreateSession }) {
               <SparklesIcon className="w-4 h-4 text-base-content/60" />
             </div>
             <div>
-              <h1 className="text-lg sm:text-xl font-semibold tracking-tight text-base-content">
-                Welcome back, {user?.firstName || "there"}
+              <h1 className="text-lg sm:text-xl font-semibold tracking-tight">
+                <span className="bg-linear-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+                  Welcome back, {user?.firstName || "there"}
+                </span>
               </h1>
               <p className="text-xs sm:text-sm text-base-content/50 mt-0.5">
                 Ready to sharpen your coding skills?

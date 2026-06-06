@@ -66,12 +66,7 @@ const Navbar = () => {
         <div className="page-container">
           <div className="flex h-16 items-center justify-between">
             <Link to="/" className="flex items-center gap-2.5 shrink-0">
-              <img
-                src="/logo.png"
-                alt="TalentForge"
-                className="h-8 w-auto object-contain logo-theme"
-              />
-              <span className="hidden sm:inline bg-linear-to-r from-primary to-accent bg-clip-text font-mono text-base font-bold tracking-tight text-transparent">
+              <span className="bg-linear-to-r from-primary to-accent bg-clip-text font-mono text-base font-bold tracking-tight text-transparent">
                 TalentForge
               </span>
             </Link>

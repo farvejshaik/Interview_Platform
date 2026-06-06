@@ -5,7 +5,7 @@ import {
   useCallStateHooks,
 } from "@stream-io/video-react-sdk";
 import { CheckIcon, CopyIcon, Loader2Icon, LogOutIcon, MessageSquareIcon, UsersIcon, XIcon } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import {
   Channel,
@@ -28,6 +28,19 @@ function VideoCallUI({ chatClient, channel, isHost, onEndSession, isEndingSessio
   const participants = useParticipants();
   const hasOngoingScreenShare = useHasOngoingScreenShare();
   const [isChatOpen, setIsChatOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(() => {
+    if (typeof window !== "undefined") {
+      return window.innerWidth < 768;
+    }
+    return false;
+  });
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const screenSharers = participants.filter(
     (p) => p.publishedTracks?.includes(3),
@@ -90,42 +103,68 @@ function VideoCallUI({ chatClient, channel, isHost, onEndSession, isEndingSessio
           </div>
         </div>
 
-        <div className="flex-1 bg-base-300 rounded-lg overflow-hidden relative min-h-0 flex gap-1 p-1">
+        <div className={`flex-1 bg-base-300 rounded-lg overflow-hidden relative min-h-0 p-1 ${isMobile ? "flex-col" : "flex"} gap-2`}>
           {hasScreenShare ? (
-            <>
-              <div className="flex-1 rounded overflow-hidden bg-black min-h-0">
-                <ParticipantView
-                  participant={screenSharers[0]}
-                  trackType="screenShareTrack"
-                />
-              </div>
-              <div className="w-40 lg:w-56 shrink-0 flex flex-col gap-1 overflow-y-auto">
-                {participants.map((p) => (
-                  <div key={p.sessionId} className="aspect-video rounded overflow-hidden bg-black/50 shrink-0">
-                    <ParticipantView participant={p} />
-                  </div>
-                ))}
-              </div>
-            </>
-          ) : (
-            <div className={`flex-1 p-1 ${participants.length <= 1 ? "flex items-center justify-center" : "grid grid-cols-2 gap-1"}`}>
-              {participants.length === 0 ? (
+            isMobile ? (
+              <>
+                <div className="w-full h-1/2 rounded overflow-hidden bg-black mb-1">
+                  <ParticipantView
+                    participant={screenSharers[0]}
+                    trackType="screenShareTrack"
+                  />
+                </div>
+                <div className="w-full h-1/2 flex gap-1 mt-1">
+                  {participants.map((p, idx) => (
+                    <div key={p.sessionId} className="flex-1 aspect-video rounded overflow-hidden bg-black">
+                      <ParticipantView participant={p} />
+                    </div>
+                  ))}
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="flex-1 rounded overflow-hidden bg-black min-h-0 flex items-center justify-center">
+                  <ParticipantView
+                    participant={screenSharers[0]}
+                    trackType="screenShareTrack"
+                  />
+                </div>
+                <div className="w-40 lg:w-56 shrink-0 flex flex-col gap-1 overflow-y-auto">
+                  {participants.map((p) => (
+                    <div key={p.sessionId} className="aspect-video rounded overflow-hidden bg-black shrink-0">
+                      <ParticipantView participant={p} />
+                    </div>
+                  ))}
+                </div>
+              </>
+            )
+          ) : (() => {
+            let content;
+            if (participants.length === 0) {
+              content = (
                 <div className="flex items-center justify-center text-base-content/40 text-sm">
                   No participants yet
                 </div>
-              ) : (
-                participants.length === 1 ? (
-                  <div className="w-full max-w-lg aspect-video">
-                    <ParticipantView participant={participants[0]} />
-                  </div>
-                ) : (
-                  participants.map((p) => (
-                    <ParticipantView key={p.sessionId} participant={p} />
-                  ))
-                )
-              )}
-            </div>
-          )}
+              );
+            } else if (participants.length === 1) {
+              content = (
+                <div className="w-full max-w-lg aspect-video rounded overflow-hidden bg-black">
+                  <ParticipantView participant={participants[0]} />
+                </div>
+              );
+            } else {
+              content = participants.map((p) => (
+                <div key={p.sessionId} className="aspect-video rounded overflow-hidden bg-black">
+                  <ParticipantView participant={p} />
+                </div>
+              ));
+            }
+            return (
+              <div className={`flex-1 p-1 ${participants.length <= 1 ? "flex items-center justify-center" : "grid grid-cols-2 gap-1"}`}>
+                {content}
+              </div>
+            );
+          })()}
         </div>
 
         <div className="bg-base-200/80 p-3 rounded-lg shadow flex justify-center shrink-0">

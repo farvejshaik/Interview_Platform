@@ -23,7 +23,11 @@ function ActiveSessions({ sessions, isLoading, isUserInSession }) {
             <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-black/5 dark:bg-white/10">
               <ZapIcon className="w-4 h-4 text-base-content/60" />
             </div>
-            <h2 className="text-sm font-medium text-base-content">Live Sessions</h2>
+            <h2 className="text-sm font-medium">
+              <span className="bg-linear-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+                Live Sessions
+              </span>
+            </h2>
           </div>
           <span className="text-[11px] font-medium px-2 py-1 rounded bg-black/5 dark:bg-white/10 text-base-content/40">
             {sessions.length}

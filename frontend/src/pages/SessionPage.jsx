@@ -20,6 +20,10 @@ import {
   PhoneOffIcon,
   UserPlusIcon,
   XIcon,
+  FileTextIcon,
+  CodeIcon,
+  VideoIcon,
+  UsersIcon,
 } from "lucide-react";
 import CodeEditorPanel from "../components/ui/codeEditorPanel";
 import OutputPanel from "../components/ui/outputPanel";
@@ -35,6 +39,21 @@ function SessionPage() {
   const [output, setOutput] = useState(null);
   const [isRunning, setIsRunning] = useState(false);
   const [inviteCopied, setInviteCopied] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [mobileTab, setMobileTab] = useState("description");
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const MOBILE_TABS = [
+    { id: "description", label: "Description", icon: FileTextIcon },
+    { id: "code", label: "Code", icon: CodeIcon },
+    { id: "video", label: "Video", icon: VideoIcon },
+  ];
 
   const {
     data: sessionData,
@@ -451,41 +470,96 @@ function SessionPage() {
             {session?.difficulty?.slice(0, 1).toUpperCase() +
               session?.difficulty?.slice(1) || "Easy"}
           </span>
-          <span className="text-[10px] text-base-content/40">
-            {session?.participant ? 2 : 1}/2
-          </span>
+          <UsersIcon className="size-4 text-base-content/40" />
         </div>
       </div>
-      <div className="flex-1 relative overflow-hidden">
-        <div
-          className="absolute inset-0"
-          style={{ animation: "fadeIn 0.2s ease-out" }}
-        >
-          <PanelGroup direction="horizontal">
-            <Panel defaultSize={50} minSize={30}>
-              <PanelGroup direction="vertical">
-                <Panel defaultSize={55} minSize={20}>
-                  {renderDescriptionPanel()}
-                </Panel>
 
-                <PanelResizeHandle className="h-1.5 bg-base-300 hover:bg-primary transition-colors cursor-row-resize" />
-
-                <Panel defaultSize={45} minSize={15}>
-                  {renderEditorPanel()}
-                </Panel>
-              </PanelGroup>
-            </Panel>
-
-            <PanelResizeHandle className="w-1.5 bg-base-300 hover:bg-primary transition-colors cursor-col-resize" />
-
-            <Panel defaultSize={50} minSize={25}>
+      {isMobile ? (
+        <div className="flex-1 flex flex-col overflow-hidden">
+          <div className="flex border-b border-base-300 bg-base-200/50 shrink-0">
+            {MOBILE_TABS.map((tab) => {
+              const Icon = tab.icon;
+              return (
+                <button
+                  key={tab.id}
+                  onClick={() => setMobileTab(tab.id)}
+                  className={`flex items-center gap-1.5 px-4 py-2.5 text-xs font-medium border-b-2 transition-colors ${
+                    mobileTab === tab.id
+                      ? "border-primary text-primary"
+                      : "border-transparent text-base-content/50"
+                  }`}
+                >
+                  <Icon className="size-3.5" />
+                  {tab.label}
+                </button>
+              );
+            })}
+          </div>
+          <div className="flex-1 overflow-hidden">
+            {mobileTab === "description" && (
+              <div className="h-full overflow-y-auto bg-base-200">
+                {renderDescriptionBody()}
+              </div>
+            )}
+            {mobileTab === "code" && (
+              <div className="h-full flex flex-col">
+                <div className="flex-1 overflow-hidden">
+                  <CodeEditorPanel
+                    selectedLanguage={selectedLanguage}
+                    code={code}
+                    isRunning={isRunning}
+                    onLanguageChange={handleLanguageChange}
+                    onCodeChange={(value) => setCode(value)}
+                    onRunCode={handleRunCode}
+                  />
+                </div>
+                {output && (
+                  <div className="h-1/2 border-t border-base-300 overflow-hidden">
+                    <OutputPanel output={output} />
+                  </div>
+                )}
+              </div>
+            )}
+            {mobileTab === "video" && (
               <div className="h-full bg-base-100 overflow-hidden">
                 {renderVideoPanelContent()}
               </div>
-            </Panel>
-          </PanelGroup>
+            )}
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className="flex-1 relative overflow-hidden">
+          <div
+            className="absolute inset-0"
+            style={{ animation: "fadeIn 0.2s ease-out" }}
+          >
+            <PanelGroup direction="horizontal">
+              <Panel defaultSize={50} minSize={30}>
+                <PanelGroup direction="vertical">
+                  <Panel defaultSize={55} minSize={20}>
+                    {renderDescriptionPanel()}
+                  </Panel>
+
+                  <PanelResizeHandle className="h-1.5 bg-base-300 hover:bg-primary transition-colors cursor-row-resize" />
+
+                  <Panel defaultSize={45} minSize={15}>
+                    {renderEditorPanel()}
+                  </Panel>
+                </PanelGroup>
+              </Panel>
+
+              <PanelResizeHandle className="w-1.5 bg-base-300 hover:bg-primary transition-colors cursor-col-resize" />
+
+              <Panel defaultSize={50} minSize={25}>
+                <div className="h-full bg-base-100 overflow-hidden">
+                  {renderVideoPanelContent()}
+                </div>
+              </Panel>
+            </PanelGroup>
+          </div>
+        </div>
+      )}
+
       {isHost && renderJoinRequestNotifications()}
     </div>
   );
