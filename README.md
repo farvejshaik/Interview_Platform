@@ -1,129 +1,236 @@
-# TalentForge
+# TalentForge - Interview Platform
 
-A real-time technical interview platform featuring user authentication, interactive code/session orchestration, live video calls, and instant chat. This repository is structured as a monorepo containing both the frontend and backend applications.
+> [Live Demo](https://talentforge-chi.vercel.app/)
 
-## Project Architecture
+TalentForge is a full-stack interview preparation platform that enables real-time collaborative coding sessions with HD video calling, live code editor, and structured learning roadmaps.
 
-This project is divided into two primary workspaces:
+## 🚀 Features
 
-- **[backend](file:///Users/farvejfaru/Desktop/Backend_Projects/Interview_Platform/backend)**: Node.js/Express server orchestrating MongoDB (via Mongoose), Clerk authentication, Stream (video & chat), and Inngest background event processing.
-- **[frontend](file:///Users/farvejfaru/Desktop/Backend_Projects/Interview_Platform/frontend)**: React + Vite application featuring real-time collaborative interfaces and user flows.
+### Core Interview Features
+- **Real-time Pair Programming** - Create and join 1-on-1 coding sessions
+- **HD Video Calling** - Powered by Stream Video SDK with screen sharing
+- **Live Code Editor** - Monaco Editor with multi-language support (JavaScript, Python, Java)
+- **Real-time Code Execution** - Server-side execution with sandboxed environment
+- **Session Management** - Join requests, acceptance/rejection, session ending
+- **Chat Integration** - In-session messaging via Stream Chat
+
+### Learning & Preparation
+- **Interactive Roadmaps** - Structured learning paths for JavaScript, React, DSA, Frontend, Backend, Fullstack, DevOps
+- **Practice Problems** - Curated coding problems with difficulty levels and categories
+- **Blog & Resources** - Technical articles and interview guides
+- **Performance Analytics** - Session history and progress tracking
+
+### User Experience
+- **Modern UI** - Built with Tailwind CSS 4, DaisyUI, and Motion animations
+- **Dark/Light Theme** - System-aware with manual toggle
+- **Responsive Design** - Mobile-first with adaptive layouts
+- **Authentication** - Clerk-based auth with protected routes
+
+## 🏗️ Architecture
 
 ```
-TalentForge/
-├── backend/                  # Node.js/Express server (port 3000)
-│   ├── src/                  # Backend source files
-│   └── README.md             # Detailed Backend documentation
-├── frontend/                 # React + Vite client (port 5173)
-│   ├── src/                  # Frontend source files
-│   └── README.md             # Detailed Frontend documentation
-├── package.json              # Monorepo task configurations
-└── vercel.json               # Vercel deployment configuration
+interview_platform/
+├── frontend/          # React 19 + Vite + Tailwind CSS 4
+├── backend/           # Express 5 + MongoDB + Stream SDK
+└── package.json       # Root workspace scripts
 ```
 
----
+### Tech Stack
 
-## Tech Stack Overview
+**Frontend:**
+- React 19, React Router 7, Vite 8
+- Tailwind CSS 4 + DaisyUI 5
+- Stream Video React SDK + Stream Chat React
+- Monaco Editor (@monaco-editor/react)
+- TanStack Query for server state
+- Motion (Framer Motion) for animations
+- Clerk React for authentication
 
-### Backend
-- **Runtime & Web Framework**: Node.js, Express.js 5.x
-- **Database**: MongoDB (Mongoose ODM)
-- **Authentication**: Clerk
-- **Real-time Video & Chat**: Stream (GetStream.io)
-- **Background Job Orchestration**: Inngest
+**Backend:**
+- Express 5 (ES Modules)
+- MongoDB + Mongoose 9
+- Stream Video/Chat Node SDK
+- Inngest for background jobs
+- Clerk Express middleware
+- Child process for code execution (Node, Python, Java)
 
-### Frontend
-- **Framework & Build Tool**: React, Vite
-- **Authentication Components**: Clerk React SDK
-- **Styling**: Vanilla CSS
-
----
-
-## Quick Start & Installation
+## 📦 Quick Start
 
 ### Prerequisites
+- Node.js 20+
+- MongoDB URI
+- Clerk account (for auth)
+- Stream account (for video/chat)
 
-Ensure you have the following installed:
-- [Node.js](https://nodejs.org/) (v18+)
-- [npm](https://www.npmjs.com/)
-- A running [MongoDB](https://www.mongodb.com/) instance (or Atlas URI)
-- Accounts for [Clerk](https://clerk.com/), [Stream](https://getstream.io/), and [Inngest](https://www.inngest.com/)
-
-### 1. Clone & Install Dependencies
-
-From the root directory, you can install dependencies for both workspaces:
+### Installation
 
 ```bash
-# Install root dependencies
-npm install
+# Clone repository
+git clone <repository-url>
+cd Interview_Platform
 
-# Install backend dependencies
+# Install all dependencies (root, backend, frontend)
+npm run build
+
+# Or install separately:
 cd backend && npm install
-
-# Install frontend dependencies
 cd ../frontend && npm install
 ```
 
-### 2. Environment Variables Configuration
+### Environment Variables
 
-Create a `.env` file in both `backend` and `frontend` directories:
-
-#### Backend (`backend/.env`)
+**Backend (`backend/.env`):**
 ```env
-PORT=3000
+PORT=5000
 NODE_ENV=development
+MONGO_URI=your_mongodb_uri
 CLIENT_URL=http://localhost:5173
 
-DB_URL=your_mongodb_connection_uri
-CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
-CLERK_SECRET_KEY=your_clerk_secret_key
+# Clerk
+CLERK_PUBLISHABLE_KEY=pk_test_...
+CLERK_SECRET_KEY=sk_test_...
 
-STREAM_API_KEY=your_stream_api_key
-STREAM_API_SECRET=your_stream_api_secret
-
-# Inngest Dev Server doesn't strictly require these locally, but useful for production
-INNGEST_EVENT_KEY=your_inngest_event_key
-INNGEST_SIGNING_KEY=your_inngest_signing_key
+# Stream
+STREAM_API_KEY=...
+STREAM_API_SECRET=...
 ```
 
-#### Frontend (`frontend/.env`)
+**Frontend (`frontend/.env`):**
 ```env
-VITE_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
+VITE_CLERK_PUBLISHABLE_KEY=pk_test_...
+VITE_STREAM_API_KEY=...
+VITE_API_URL=http://localhost:5000/api
 ```
 
-### 3. Run Locally
+### Development
 
-To run the application locally, start the backend and frontend servers:
-
-#### Start the Backend Server (Express + Inngest Dev Server)
 ```bash
-cd backend
-npm run dev
+# Terminal 1 - Backend
+cd backend && npm run dev
+
+# Terminal 2 - Frontend
+cd frontend && npm run dev
 ```
 
-#### Start the Inngest Dev Server (for background job testing)
+### Production Build
+
 ```bash
-npx inngest-cli@latest dev -u http://localhost:3000/api/inngest
+# Builds frontend and installs backend deps
+npm run build
+
+# Start production server (serves frontend from backend)
+npm start
 ```
 
-#### Start the Frontend App (Vite Dev Server)
-```bash
-cd frontend
-npm run dev
+## 📚 Project Structure
+
+### Backend
+```
+backend/
+├── src/
+│   ├── controllers/     # Route handlers
+│   │   ├── sessionController.js
+│   │   ├── executeController.js
+│   │   └── chatController.js
+│   ├── models/          # Mongoose models
+│   │   ├── Session.js
+│   │   └── User.js
+│   ├── routes/          # Express routes
+│   │   ├── sessionRoutes.js
+│   │   ├── executeRoutes.js
+│   │   └── chatRoutes.js
+│   ├── middleware/      # Auth middleware
+│   │   └── protectRoute.js
+│   ├── lib/             # Utilities & config
+│   │   ├── stream.js
+│   │   ├── db.js
+│   │   ├── env.js
+│   │   └── inngest.js
+│   └── server.js        # Entry point
 ```
 
-The frontend will run at `http://localhost:5173` and communicate with the backend at `http://localhost:3000`.
+### Frontend
+```
+frontend/
+├── src/
+│   ├── components/
+│   │   ├── ui/          # Reusable UI components
+│   │   └── ui/roadmap/  # Roadmap-specific components
+│   ├── pages/           # Page components
+│   ├── hooks/           # Custom React hooks
+│   ├── api/             # API clients
+│   ├── lib/             # Utilities
+│   ├── data/            # Static data (problems, roadmaps, blogs)
+│   ├── App.jsx
+│   ├── main.jsx
+│   └── index.css        # Tailwind + custom styles
+```
 
----
+## 🔌 API Endpoints
 
-## Deployment
+### Sessions (`/api/sessions`)
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/` | Create new session |
+| GET | `/active` | Get active sessions |
+| GET | `/my-recent` | Get user's completed sessions |
+| GET | `/:id` | Get session by ID |
+| POST | `/:id/join` | Join as participant |
+| POST | `/:id/end` | End session (host only) |
+| POST | `/:id/request-join` | Request to join |
+| GET | `/:id/join-requests` | Get join requests |
+| POST | `/:id/accept-join/:userId` | Accept join request |
+| POST | `/:id/reject-join/:userId` | Reject join request |
 
-The project is configured for seamless deployment on platforms like **Vercel** using the root `vercel.json` and monorepo scripts.
+### Code Execution (`/api/execute`)
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/` | Execute code (JS, Python, Java) |
 
-### Build and Start Commands
+### Chat (`/api/chat`)
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/token` | Get Stream Chat token |
 
-The root `package.json` contains scripts to automate deployment builds:
-- **Build**: `npm run build` (Installs all dependencies and builds the React frontend)
-- **Start**: `npm run start` (Runs the Express backend server)
+## 🎯 Key Features Explained
 
-Refer to [backend/README.md](file:///Users/farvejfaru/Desktop/Backend_Projects/Interview_Platform/backend/README.md) for detailed descriptions of API endpoints, database schemas, and background job event flows.
+### Session Flow
+1. **Host creates session** → Backend creates MongoDB doc + Stream Video call + Chat channel
+2. **Participant joins** → Direct join or request-join flow
+3. **Real-time collaboration** → Video + Code Editor + Chat sync
+4. **Host ends session** → Cleans up Stream resources, marks session completed
+
+### Code Execution
+- Sandboxed execution in temp directories
+- Supports JavaScript (Node.js), Python 3, Java
+- 10-second timeout, 1MB output limit
+- Automatic cleanup of temp files
+
+### Mobile Responsiveness
+- **Session Page**: Tab-based layout (Description / Code / Video) on mobile
+- **Video Call**: Stacked layout (50/50 split) with screen share on top
+- **Landing Page**: Responsive bento grid with optimized images
+
+## 🔐 Authentication
+
+Clerk handles all authentication:
+- Sign up / Sign in pages
+- User profile management
+- JWT tokens for API protection
+- `protectRoute` middleware validates `req.auth.userId`
+
+## 📝 License
+
+ISC License
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit changes (`git commit -m 'Add amazing feature'`)
+4. Push to branch (`git push origin feature/amazing-feature`)
+5. Open Pull Request
+
+## 📞 Support
+
+For issues and feature requests, please open a GitHub issue.

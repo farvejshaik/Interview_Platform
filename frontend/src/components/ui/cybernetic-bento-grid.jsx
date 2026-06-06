@@ -51,7 +51,7 @@ const CardContent = ({ item }) => (
       <p className="mt-1.5 sm:mt-2 text-xs sm:text-sm text-base-content/70">{item.description}</p>
     </div>
     {item.chart && (
-      <div className="mt-4 sm:mt-6 rounded-lg bg-base-300/50 hidden sm:flex items-center justify-center overflow-hidden flex-1 min-h-[300px] lg:min-h-[400px]">
+      <div className="mt-4 sm:mt-6 rounded-lg flex items-center justify-center overflow-hidden flex-1 min-h-[200px] sm:min-h-[300px] lg:min-h-[400px]">
         <img src="/demo-pic.png" alt="HD Video Call Preview" className="h-full w-full object-contain p-2" />
       </div>
     )}
